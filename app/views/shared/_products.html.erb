@@ -1,0 +1,3 @@
+<div>
+    <%= titled(@products, link: ->(product) { product_path(product) }, columns: 3, description: false, price: ->(product){ product.price }, add_to_cart: ->(product){show_add_to_cart(product, html_class: "btn-xs")})%>
+</div>

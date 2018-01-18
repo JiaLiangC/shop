@@ -1,0 +1,28 @@
+defaults: &defaults
+  yunpian:
+    signature: "5fcc0e93908fb5e99ae70349d20e4451"
+  qiniu:
+    bucket: "chenxiyue"
+    access_key: "BFGgeYJWnsRnlY7MSA8HNjbfGN2BwbIeyPJoU7XD"
+    secret_key: 3qu7qOL9e5JersA4Wrnb9BdRc0Kg3ixAyJYAzXPQ
+  sendcloud:
+    uri: "http://api.sendcloud.net/apiv2/mail/send"
+    api_user: "chengxiyue_test_Dv1H4N"
+    api_key: "Sp8BSU0DV8XM1gUJ"
+  alipay:
+    appid: '2016080500173958'
+    notify_url: ''
+    return_url: ''
+    gateway_url: 'https://openapi.alipaydev.com/gateway.do'
+    aes_private: 'wWsmQLoSd8MrzR3J4G2xpQ=='
+  weixin:
+    appid: 'wxfdbae18e98722100'
+    appsecret: '00b36e79b075942863758c4922c5a495'
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,0 +1,176 @@
+<div class="rows">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="user-detail">
+
+      <div class="user-cover">
+      </div>
+      <div class="profile-avatar">
+        <div class="user-avatar-editor  ">
+          <div class="avatar">
+            <%= gravatar_for(@user, width: "190")%>
+          </div>
+          <div class="mask" onclick="file.click();" > 
+            <div class="mask-content">
+              <i class="fa fa-2x fa-camera" ></i>
+              <input type="file" id="file" style="display:none">
+              <div class="mask-inner-text">修改我头像</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-profile">
+          <%= @user.name%>
+        <div class="profile-edit">
+          <%= link_to "编辑个人资料","#"%>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div>
+      <%= link_to "我的文章",''%>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal" id="avatar_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div style="text-align:center">
+          <h4 class="modal-title">
+          编辑头像
+          </h4>
+          <p>调整头像尺寸和位置</p>
+        </div>
+      </div>
+
+      <div class="modal-body clearfix">
+
+        <div class="imageBox" style="float:left">
+          <div class="thumbBox"></div>
+          <div class="spinner" style="display: none">Loading...</div>
+        </div>
+
+        <div class="cropped" style="float:right"></div>
+
+        <div class="action" style="clear:both">
+          <input type="button" class="btn btn-default" id="btnCrop" value="裁剪" style="float: right;"/>
+          <i class="fa fa-2x fa-search-minus"  id="btnZoomOut" style="float: right;cursor: pointer;margin-right:20px;"></i>
+          <i class="fa fa-2x fa-search-plus" id="btnZoomIn" style="float: right;cursor: pointer;margin-right:20px;"></i>
+        </div>
+
+        <div>
+          <%= form_tag 'http://upload.qiniu.com',id: "image_upload",multipart: true  do %>
+            <%qiniu_token=generate_qiniu_upload_token %>
+            <%= hidden_field_tag :token, qiniu_token%>
+          <%end%>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="clear:both">
+        <button class="btn-block js-upload btn btn-success">保存</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+      var filename;
+      var oReq;
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            // imgSrc: 'images/photo_icon.png'
+        }
+        // var cropper = $('.imageBox').cropbox(options);
+        $('#file').on('change', function(){
+            filename=$(this).val(); 
+
+            $("#avatar_modal").modal();
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            var fileSize = this.files[0].size;
+            var fileName = this.value;
+            document.getElementById("file").value="";
+            // this.files = [] 只读的不能这样清空;
+        })
+
+        $('#btnCrop').on('click', function(){
+            var img = cropper.getDataURL();
+            if($('.base64img').length == 0)
+            {
+              $('.cropped').append('<img class="base64img" src="'+img+'">');
+            }
+            else
+            {
+              $('.base64img').attr('src',img)
+            }
+        })
+        $('#btnZoomIn').on('click', function(){
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function(){
+            cropper.zoomOut();
+        })
+
+        $(".js-upload").click(function(){
+          console.log("uploading...")
+          var data =cropper.getDataURL();
+          // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
+          data = data.split(',')[1];
+          data = window.atob(data);
+          var ia = new Uint8Array(data.length);
+          for (var i = 0; i < data.length; i++) {
+              ia[i] = data.charCodeAt(i);
+          };
+
+          // canvas.toDataURL 返回的默认格式就是 image/png
+          var blob = new Blob([ia], {type:"image/png"});
+          var fd = new FormData();
+          var arr=filename.split('\\');//注split可以用字符或字符串分割 
+          var image_name=arr[arr.length-1];//这就是要取得的图片名称 
+          
+          token = $("input[name=token]").val();
+          fd.append('file',blob,image_name);
+          fd.append('token',token);
+          fd.append('x:user_id', "<%= current_user.try(:id)%>");
+          fd.append('x:imgable_type', "<%= @user.class.name %>");
+          fd.append('x:imgable_id', "<%= @user.id %>");
+          fd.append('x:return_url', "<%= url_for(params.to_unsafe_h.merge(only_path: false))%>");
+          console.log(fd);
+          oReq = new XMLHttpRequest();
+          oReq.onreadystatechange = callback;
+          oReq.open("POST", "http://upload.qiniu.com",true);
+          oReq.send(fd);
+        });
+        function callback(){
+          if(oReq.readyState == 4) {
+            if (oReq.status == 200) {
+              $("#avatar_modal").modal();
+              location.reload();
+              console.log(oReq.responseText);
+            }
+            else {
+              console.log("error");
+            }
+          }
+        }
+    });
+</script>

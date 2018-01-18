@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>管理平台－商城</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <%= csrf_meta_tags%>
+        <%= stylesheet_link_tag 'admin', media: 'all'%>
+        <%= javascript_include_tag 'admin'%>
+    </head>
+    <body>
+        <%= render 'admin/layouts/nav'%>
+        <div class="container admin_body">
+            <%flash.each do |message_type, message|%>
+                <%= content_tag("div", message, class: "alert alert-#{message_type} center")%>
+            <%end%>
+            <%= yield%>
+        </div>
+        <div class="admin_footer">
+            
+        </div>
+    </body>
+</html>

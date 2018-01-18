@@ -1,0 +1,2 @@
+module MemberScoreHelper
+end

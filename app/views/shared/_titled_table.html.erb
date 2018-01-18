@@ -1,0 +1,65 @@
+
+
+<table class="titled">
+    <% collection.in_groups_of(columns).each do |rows| %>
+        <tr>
+            <% rows.each do |item| %>
+                <% if item.present? %>
+                    <td id="<%= item.id%>" class="clearfix">
+                        <div class="wrap clearfix">
+                           <div class="product-img clearfix">
+                                <%= link_to thumbnail.call(item), link.call(item) %>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-title">
+                                    <%= link_to title.call(item), link.call(item) %>
+                                </div>
+                                <div class="product-price">
+                                    <%= link_to(price.call(item), link.call(item)) if price.present? %>
+                                </div>
+                                <div class="product-description">
+                                    <%= link_to(description.call(item), link.call(item)) if description.present? %>
+                               </div>
+                                <div>
+                                    <p><%= add_to_cart.call(item) if add_to_cart %></p> 
+                                </div>
+                            </div> 
+                        </div>
+                    </td>
+                <% end %>
+            <% end %>
+        </tr>
+    <% end %>
+</table>
+
+<script type="text/javascript">
+
+    function adjustByWindowSize(){
+        if($(window).width() > 768){
+            $("td").width("<%= 100/columns %>%");
+            $("td").height("<%= 100/columns*0.6 %>%");
+        }else {
+            $("td").width("90%");
+            if($(window).width() > 420){
+                $("td").height($("td").width()*0.5+"px");
+            }
+        }
+    }
+
+    $(function(){
+        $(document).on('turbolinks:load', function() {
+            console.log('(document).turbolinks:load')
+            adjustByWindowSize();
+        });
+
+        $(window).resize(function() {
+            adjustByWindowSize();
+        });
+        
+    });
+</script>
+
+<!-- 调用时 -->
+<!-- <%#= titled(cities,link: ->(city){city_ptah(city)})%> -->
+<!-- 当对象不同时 -->
+ <!-- <%#= titled(users,link: ->(user){user_path(user)},thumbnail: ->(user){user.avatar},title: ->(user){user.name},columns: 5)%> -->

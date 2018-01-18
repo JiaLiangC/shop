@@ -1,0 +1,275 @@
+@import "bootstrap-sprockets";
+@import  "bootstrap";
+@import  "font-awesome";
+
+@import  "*";
+
+
+//全局css
+body{
+  background-color: #F1F1F1;
+  font-family: Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Source Han Sans CN",Roboto,"Microsoft Yahei",sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+.center{
+    text-align: center;
+}
+.error{
+  color: #A94442;
+}
+.alert-none{
+    color: red;
+}
+.align-right{
+  text-align: right;
+}
+select {
+  width: 100%;
+  /*统一边框*/
+  border: solid 1px #CCCCCC;
+  /*将默认的select选择框样式清除*/
+  appearance:none;//这个样式就是清除他的下拉按钮的默认样式
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  /*替换选择框的最右侧显示小箭头图片*/
+  background: url("arrow.svg") no-repeat scroll right center transparent;
+  background-size: 13px 70%;
+  background-position:  98% center;
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 10px;
+  padding: 8px 8px;
+}
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+
+
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+
+//首页相关css
+#myCarousel:hover .carousel-arrow{
+display: block;
+}
+.carousel-arrow .fa-left{
+  display: block;
+  position: absolute;
+  top:50%;
+  left: 20%;
+}
+.carousel-arrow .fa-right{
+  display: block;
+  position: absolute;
+  top:50%;
+  right: 20%;
+}
+
+.headerv1 .container{
+  padding: 20px 2% 20px 2%;
+  margin: 0;
+  width: 100%;
+}
+.logo{
+  display: inline-block;
+  padding-left: 15px;
+  width: 60px;
+}
+
+.home-nav{
+  display: block;
+  padding-left: 60px;
+  font-size: 0;
+  width: 100%;
+  background-color: #404144;
+}
+.home-nav li{
+  font-size: 16px;
+  display: inline-block;
+  min-width: 10%;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+}
+.home-nav li.active{
+  background-color: black;
+}
+.home-nav li:hover{
+  background-color: black;
+}
+.home-nav li a{
+  text-decoration: none;
+  color: white;
+}
+/*home banner*/
+.banner{
+  padding: 0 20%;
+}
+.carousel-inner img{
+  width: 100%;
+}
+
+
+
+//用户登陆相关css
+
+#modal-login {
+  text-align: center;
+}
+#modal-login .modal-dialog{
+  text-align: center;
+  width: 35%;
+}
+
+#modal-login .inner-login{
+  margin: 0 auto;
+  width: 80%;
+}
+.modal-body{
+  height: 350px;
+}
+
+#modal-login .verify{
+  position: relative;
+}
+.send-sms{
+  text-decoration: none;
+}
+
+.login_or_register{
+  width: 50%;
+
+  margin: 8% auto 0 auto;
+  background-color: white;
+}
+
+.login_or_register .active{
+  color: #ED9586;
+}
+.login{
+  margin: 0 auto;
+  width: 80%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+ .sms{
+  position: relative;
+}
+ .send-sms{
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 11px 0;  
+  font-size: 16px;
+  border: #CCCCCC 1px solid; 
+  color: gray;
+  border-radius: 0 6px 6px 0;
+}
+.login-triggle{
+  padding-top: 20px;
+  font-size: 20px;
+  color: gray;
+  text-align: center;
+}
+#error_explanation{
+  color:red;
+  
+}
+#error_explanation ul{
+    color: red;
+    margin: 0 0 30px 0;
+  }
+.input-group-addon{
+  display: table-cell;
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 15px;
+}
+.input-group-captcha{
+  background: #fff;
+}
+.input-group-captcha img {
+    border-radius: 3px 0 0 3px;
+}
+.rucaptcha-image {
+    width: 120px;
+}
+
+
+
+//商品列表页css
+.wrap img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.wrap{
+    margin-left: 10px;
+}
+
+td{ 
+    box-sizing:border-box;
+}
+
+.product-img{
+  height: 200px;
+}
+
+.product-info{
+    padding-top: 12px;
+}
+
+@media (max-width:768px){
+    td{
+        float: left;
+        margin-bottom: 10px;
+        max-height: 200px;
+    }
+    .wrap{
+        margin-bottom: 12px;
+    }
+    .product-img{
+        float: left;
+        width: 55%;
+        margin-right: 12px;
+        padding-bottom: 10px;
+    }
+    .product-description{
+
+    }
+}
+
+@media (max-width: 420px){
+    td{
+        float: left;
+        min-width: 200px;
+        max-height: none;
+        height: auto !important;
+    }
+ 
+    .product-info{
+        float: left;
+    }
+    .product-img{
+        float: left;
+        width: 95%;
+        height: 200px;
+        max-height: 230px;
+        margin-right: 12px;
+    }
+}
+a.add-to-cart-btn {
+  i {
+    display: none;
+  }
+}

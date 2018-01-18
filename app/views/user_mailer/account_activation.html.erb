@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <p>您好<%= @user.name%></p>   
+  <p>欢迎注册雅马哈，请<%= link_to "点击链接",user_account_activation_url(@user.email_activation_token,account: @user.email, host: root_url)%>来激活您的帐号
+  </p>
+</body>
+</html>

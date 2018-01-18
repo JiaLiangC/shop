@@ -1,0 +1,25 @@
+<%
+if @category.new_record? 
+    path = admin_categories_path
+    method = :post
+else
+    path = admin_category_path(@category.id)
+    method = :put
+end
+%>
+
+<%= form_for(:category, url: path, method: method) do |f|%>
+    <div class="form-group">
+        <label>所属分类</label>
+        <%= f.select :ancestry, options_for_select(root_categories(except_obj: @category).collect{|c| [c.title, c.id]}.insert(0,['一级分类',nil]), selected: @category.parent.try(:id))%>
+    </div>
+    <div class="form-group">
+        <label>名称</label>
+        <%= f.text_field :title, class: "form-control"%>
+    </div>
+     <div class="form-group">
+        <label>权重</label>
+        <%= f.text_field :weight, type: "number", class: "form-control"%>
+    </div>
+    <%=f.submit "提交",class: "btn btn-primary"%>
+<%end%>

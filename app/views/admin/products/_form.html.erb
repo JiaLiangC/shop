@@ -1,0 +1,32 @@
+<%= form_for [:admin, @product] do |f|%>
+    <div class="form-group">
+        名称
+        <%=f.text_field :title, class: "form-control"%>
+    </div>
+    <div class="form-group">
+        分类
+        <%= f.select :category_id,option_groups_from_collection_for_select(root_categories, :children, :title, :id, :title, selected_key: @product.category.try(:id), selected: @product.category.try(:id)),prompt: "选择分类"%>
+    </div>
+    <div class="form-group">
+        商品状态
+        <%= f.select :status, products_status_options%>
+    </div>
+    <div class="form-group">
+        <label>库存</label>
+        <%=f.text_field :amount, type: "number", class: "form-control"%>
+    </div>
+    <div class="form-group">
+        <label>价格</label>
+        <%=f.text_field :price, class: "form-control"%>
+    </div>
+    <div class="form-group">
+        <label>厂家推荐价格</label>
+        <%=f.text_field :msrp, class: "form-control"%>
+    </div>
+    <div class="form-group">
+        <label>描述</label>
+        <%=f.text_area :description, class: "form-control"%>
+    </div>
+    <%= f.submit "提交",class: "btn btn-primary"%>
+
+<%end%>

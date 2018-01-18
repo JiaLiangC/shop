@@ -1,0 +1,8 @@
+<xml>
+    <ToUserName><![CDATA[<%= @name %>]]></ToUserName>
+    <FromUserName><![CDATA[<%= @name %>]]></FromUserName>
+    <CreateTime><%= Time.now.to_i %></CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[你说的是：<%= @name %>]]></Content>
+    <FuncFlag>0</FuncFlag>
+</xml>

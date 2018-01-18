@@ -1,0 +1,39 @@
+<div class="col-md-8 col-md-offset-2">
+    <div class="pull-right">
+        <%= link_to "新建商品", new_admin_product_path, class: "btn btn-primary"%>
+    </div>
+    <h2>
+        商品(<%= @products.try(:total_entires)%>)
+    </h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>uuid</th>
+                <th>MSRP</th>
+                <th>price</th>
+                <th>库存</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @products.each do |p|%>
+                <tr>
+                    <td><%= p.id%></td>
+                    <td><%= p.title%></td>
+                    <td><%= p.uuid%></td>
+                    <td><%= p.msrp%></td>
+                    <td><%= p.price%></td>
+                    <td><%= p.amount%></td>
+                    <td><%= Enums.product_status[p.status.to_sym]%></td>
+
+                    <td><%=link_to "编辑", edit_admin_product_path(p.id)%></td>
+                    <td><%= link_to "删除", admin_product_path(p.id),method: :delete%></td>
+                    <td><%= link_to "图片管理",admin_product_images_path(product_id: p.id)%></td>
+                </tr>
+            <%end%>
+        </tbody>
+        
+    </table>
+</div>

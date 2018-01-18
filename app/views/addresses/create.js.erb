@@ -1,0 +1,8 @@
+<%if @status == "failed"%>
+    $("#address_modal").html('');
+    $("#address_modal").html("<%= j render 'form',address: @address %>");
+    $("#user_address_modal").modal('show');
+<%elsif @status == "success"%>
+    $("#address_modal").empty();
+    window.location="<%= addresses_path(current_user)%>"
+<%end%>

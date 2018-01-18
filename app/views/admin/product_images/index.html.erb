@@ -1,0 +1,101 @@
+<div>
+    <div class="pull-right">
+        <%= form_tag 'http://upload.qiniu.com', html: {multipart: true, id: "image_upload"}, remote: true   do %>
+            <div>
+                <%qiniu_token = generate_qiniu_upload_token %>
+                <%= hidden_field_tag :token, qiniu_token%>
+                <%= hidden_field_tag "x:imgable_id", @product.id%>
+                <%= hidden_field_tag "x:imgable_type", @product.class.name%>
+                <%= hidden_field_tag "x:user_id", current_user.try(:id)%>
+                <%= hidden_field_tag "x:return_url", url_for(params.to_unsafe_h.merge(only_path: false)) %>
+                <input type="file" name="file[file]" id="pfile" class="hidden" />
+                <%= image_tag "upload",onclick: "pfile.click();",class: "file-upload"%>
+                <span id="file_name"></span>
+                <%= link_to "上传", '#', class: "btn btn-primary js-upload"%>
+            </div>
+            
+        <%end%>
+    </div>
+    <div>
+        <h2>商品<%= @product.title%></h2>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>图片</th>
+                <th>权重</th>
+                <th></th>
+            </tr>
+            <tbody>
+                <%@product.images.each do |img|%>
+                <tr>
+                    <td><%= img.id%></td>
+                    <td><%= image_tag(image_path(img.name), size: "100x100")%></td>
+                    <td><%= img.weight%></td>
+                    <td><%= link_to "删除", admin_product_image_path(img),method: :delete%></td>
+                </tr>
+                    
+                <%end if @product.images.present?%>
+            </tbody>
+        </thead>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function truncate(str, length){
+        var name = str.length < length ? str : (str.slice(0, 15) + "...");
+        return name;
+    }
+
+    $(function(){
+        var filename;
+        $('#pfile').on('change', function(){
+            var fileSize = this.files[0].size;
+            var fileName = this.value;
+            filename = fileName;
+            console.log(fileName);
+            var arr = fileName.split('\\');     //注split可以用字符或字符串分割
+            var image_name = arr[arr.length-1]; //这就是要取得的图片名称 
+            var truncate_imgName = truncate(image_name, 15);
+            console.log(truncate_imgName);
+            // document.getElementById("ufile").value="";
+            $("#file_name").text(truncate_imgName);
+            // this.files = [] 只读的不能这样清空;
+        });
+
+        $(".js-upload").on("click", function(){
+          var fd = new FormData();
+          var arr = filename.split('\\');     //注split可以用字符或字符串分割
+          var image_name = arr[arr.length-1]; //这就是要取得的图片名称 
+          $("#file_name").text = image_name;
+          token = $("input[name=token]").val();
+          fd.append('file', $('#pfile')[0].files[0]);
+          fd.append('token', token);
+          fd.append('x:user_id', "<%= current_user.try(:id)%>");
+          fd.append('x:imgable_type', "<%= @product.class.name %>");
+          fd.append('x:imgable_id', "<%= @product.id %>");
+          fd.append('x:return_url', "<%= url_for(params.to_unsafe_h.merge(only_path: false))%>");
+          console.log("ss");
+          oReq = new XMLHttpRequest();
+          oReq.onreadystatechange = callback;
+          oReq.open("POST", "http://upload.qiniu.com", true);
+          oReq.send(fd);
+        });
+
+        function callback(){
+          if(oReq.readyState == 4) {
+            if (oReq.status == 200) {
+                console.log("upload success")
+              location.reload();
+              console.log(oReq.responseText);
+            }
+            else {
+              console.log("error");
+            }
+          }
+        }
+    })    
+</script>
+

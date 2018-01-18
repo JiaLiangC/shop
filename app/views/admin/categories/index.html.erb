@@ -1,0 +1,42 @@
+<div class="col-md-offset-2 col-md-8 " style="border: solid red 1px">
+    <div>
+       <div class="pull-right">
+        <%= link_to "创建分类",new_admin_category_path, class: "btn btn-primary"%>
+        </div>
+        <h2>
+            <%if @category.present? %>
+                <%= link_to "分类",admin_categories_path%>:<%= @category.title %>(<%=@categories.total_entries%>)
+            <%else%>
+                分类(<%= @categories.total_entries %>)
+            <%end%>
+        </h2> 
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+
+            <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>weight</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tbody>
+                <%@categories.each do |category|%>
+                    <tr>
+                        <td><%= category.id%></td>
+                        <td><%= category.title%></td>
+                        <td><%= category.weight%></td>
+                        <td><%= link_to "编辑",edit_admin_category_path(id: category.id)%></td>
+                        <td><%= link_to "删除",'#'%></td>
+                        <%if category.has_children?%>
+                            <td><%= link_to "查看子分类",admin_categories_path(id: category.id)%></td>
+                        <%end%>
+                    </tr>
+                <%end%>
+            </tbody>
+        </thead>
+    </table>
+    <%= will_paginate @categories%>
+</div>

@@ -1,0 +1,68 @@
+<div class="row headerv1">
+  <div class="container">
+
+    <div class="col-md-3 col-sm-3 col-xs-3" >
+      <%= image_tag("mall.svg",class: "logo")%>
+    </div>
+
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <div class="top-search">
+          <form action="/search" method="get">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" />
+              <span class="input-group-btn">
+                <button class=" btn btn-default" type="submit">
+                  搜索
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-3 ">
+      
+
+      <div class="dropdown  pull-right" style="padding-left:10px;margin:0;">
+        <span class="dropdown-toggle nav-menu" data-toggle="dropdown">
+          <i class="fa-left fa fa-3x fa-plus-square" aria-hidden="true"></i>
+        </span>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#">消息通知</a></li>
+          <li> <%=link_to "个人信息",'' if current_user%> </li>
+          <li><%= link_to "收货地址", addresses_path(current_user) if current_user%></li>
+          <li role="separator" class="divider"></li>
+          <li><%=link_to("退出",logout_path, method: :delete) if current_user%></li>
+        </ul>
+      </div>
+      <div class="pull-right">
+        <span><%= link_to '购物车', shopping_carts_path%></span>
+        <%if current_user%>
+          <span style="line-height:40px;vertical-align:middle;"><%= link_to current_user.name, current_user%></span>
+        <%else%>
+          <span style="line-height:40px;vertical-align:middle;">
+            <%= link_to "登陆",login_path%>
+            <%= link_to "注册",signup_path%>
+          </span>
+        <%end%>
+        <a href="" style="line-height:40px;vertical-align:middle;" data-toggle="modal" data-target="#modal-login"></a>
+      </div>
+
+    </div>
+  </div>
+
+  <ul class="home-nav">
+    <li class="<%= active_class('home')%>">
+      <%= link_to "商品",root_path%>
+    </li>
+    <li><a href="">买家秀</a></li>
+    <li><a href="">最新资讯</a></li>
+    <li><a href="">新闻</a></li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $(".dropdown").mouseover(function() {   
+     $(this).addClass('open'); }).mouseout(function() {$(this).removeClass('open'); }); 
+    });
+</script>

@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+
+      <h2 class="center">我的收货地址</h2>
+
+      <div class="align-right">
+        <%= link_to "新建地址", new_address_path(),remote: true, class: "btn btn-primary "%>
+      </div>
+
+      <br>
+      
+        <table class="table table-striped">
+            <%@addresses.each do |addr|%>
+
+                <tr>
+                    <td>
+                      <input name="address_id"  type="radio" data-address_id="<%=addr.id%>" value="<%= addr.defaults%>" <%= "checked" if addr.defaults%>/>
+                    </td>
+                    
+                    <td><%= addr.contact_name%></td>
+                    <td><%= addr.mobile%></td>
+                    <td><%= addr.address%></td>
+                    <td><%= link_to "编辑", edit_address_path(addr),remote: true%></td>
+                    <td><%= link_to "删除", address_path(addr),method: :delete%></td>
+                    <%if addr.defaults%>
+                      <td>默认地址</td>
+                    <%else%>
+                      <td><%= link_to "设为默认", address_set_default_path(addr),method: :put%></td>
+                    <%end%>
+                </tr>
+            <%end%>
+       </table> 
+
+    </div>
+</div>
+
+<div id="address_modal">
+</div>

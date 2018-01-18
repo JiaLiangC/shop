@@ -1,0 +1,77 @@
+  [1m[35m (64.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS `shop`[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE DATABASE `shop` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (45.6ms)[0m  [1m[35mCREATE TABLE `addresses` (`id` int AUTO_INCREMENT PRIMARY KEY, `user_id` int, `address_type` varchar(255), `contact_name` varchar(255), `mobile` varchar(255), `address` varchar(255), `zipcode` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `defaults` tinyint(1) DEFAULT 0,  INDEX `index_addresses_on_user_id_and_address_type` USING btree (`user_id`, `address_type`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE `categories` (`id` int AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `weight` int DEFAULT 0, `products_counter` int DEFAULT 0, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `ancestry` varchar(255),  INDEX `index_categories_on_ancestry` USING btree (`ancestry`),  INDEX `index_categories_on_title` USING btree (`title`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE `images` (`id` int AUTO_INCREMENT PRIMARY KEY, `imgable_id` int, `imgable_type` varchar(255), `name` varchar(255), `user_id` int, `filename` varchar(255), `storage` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `weight` int DEFAULT 0,  INDEX `index_images_on_imgable_id` USING btree (`imgable_id`),  INDEX `index_images_on_name` USING btree (`name`),  INDEX `index_images_on_weight_and_imgable_id` USING btree (`weight`, `imgable_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE `member_scores` (`id` int AUTO_INCREMENT PRIMARY KEY, `type` varchar(255), `num` int, `user_id` int, `description` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE `orders` (`id` int AUTO_INCREMENT PRIMARY KEY, `user_id` int, `product_id` int, `address_id` int, `order_no` varchar(255), `amount` int, `total_money` decimal(10,2), `payment_at` datetime, `payment_id` int, `status` varchar(255) DEFAULT 'initial', `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, UNIQUE INDEX `index_orders_on_order_no` USING btree (`order_no`),  INDEX `index_orders_on_payment_id` USING btree (`payment_id`),  INDEX `index_orders_on_user_id` USING btree (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE `payments` (`id` int AUTO_INCREMENT PRIMARY KEY, `user_id` int, `payment_no` varchar(255), `transaction_no` varchar(255), `status` varchar(255) DEFAULT 'initial', `total_money` decimal(10), `payment_at` datetime, `raw_response` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, UNIQUE INDEX `index_payments_on_payment_no` USING btree (`payment_no`),  INDEX `index_payments_on_transaction_no` USING btree (`transaction_no`),  INDEX `index_payments_on_user_id` USING btree (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (16.6ms)[0m  [1m[35mCREATE TABLE `products` (`id` int AUTO_INCREMENT PRIMARY KEY, `category_id` int, `title` varchar(255), `status` varchar(255) DEFAULT 'off', `amount` int DEFAULT 0, `uuid` varchar(255), `msrp` decimal(10,2), `price` decimal(10,2), `description` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_products_on_category_id` USING btree (`category_id`),  INDEX `index_products_on_status_and_category_id` USING btree (`status`, `category_id`),  INDEX `index_products_on_title` USING btree (`title`),  INDEX `index_products_on_uuid` USING btree (`uuid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (15.4ms)[0m  [1m[35mCREATE TABLE `profiles` (`id` int AUTO_INCREMENT PRIMARY KEY, `avatar` varchar(255), `location` varchar(255), `gender` varchar(255), `city` varchar(255), `description` text, `age` int, `user_id` int, `birthday` date, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (18.5ms)[0m  [1m[35mCREATE TABLE `shopping_carts` (`id` int AUTO_INCREMENT PRIMARY KEY, `user_id` int, `user_uuid` varchar(255), `product_id` int, `amount` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_shopping_carts_on_user_id` USING btree (`user_id`),  INDEX `index_shopping_carts_on_user_uuid` USING btree (`user_uuid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255), `email_activation_digest` varchar(255), `email_verified` tinyint(1) DEFAULT 0, `password_digest` varchar(255) NOT NULL, `activated_at` datetime, `remember_digest` varchar(255), `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `name` varchar(255), `mobile` varchar(255), `mobile_verified` tinyint(1) DEFAULT 0, `reset_digest` varchar(255), `reset_sent_at` datetime, `open_id` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `admin` tinyint(1) DEFAULT 0, `uuid` varchar(255), `sex` int, `headimgurl` varchar(255), `unionid` varchar(255), `score` int, UNIQUE INDEX `index_users_on_email` USING btree (`email`), UNIQUE INDEX `index_users_on_mobile` USING btree (`mobile`), UNIQUE INDEX `index_users_on_name` USING btree (`name`),  INDEX `index_users_on_unionid` USING btree (`unionid`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (16.6ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20180115035335)[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20180115033112),
+(20170613071735),
+(20170613071633),
+(20170615085634),
+(20170626082048),
+(20170621064718),
+(20170613080300),
+(20180115032303),
+(20170613071757),
+(20170613075033),
+(20170615090857),
+(20170613080127),
+(20170622021502),
+(20170615085932),
+(20170619101253),
+(20170616072153);
+
+[0m
+  [1m[35m (43.0ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-01-15 06:48:24', '2018-01-15 06:48:24')[0m
+  [1m[35m (40.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('5939944341529942170', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to ChangeUserScores (20180115092136)
+  [1m[35m (54.0ms)[0m  [1m[35mALTER TABLE `users` DROP `score`[0m
+  [1m[35m (28.3ms)[0m  [1m[35mALTER TABLE `users` ADD `scores` int DEFAULT 0 NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180115092136')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('5939944341529942170')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `addresses`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'addresses'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `categories`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'categories'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `images`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'images'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `member_scores`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'member_scores'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `orders`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'orders'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `payments`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'payments'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `products`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'products'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `profiles`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'profiles'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `shopping_carts`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'shopping_carts'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m

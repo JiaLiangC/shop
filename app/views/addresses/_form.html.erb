@@ -1,0 +1,50 @@
+<style type="text/css">
+  .form-group input{
+    width: 60%;
+  }
+   .form-group textarea{
+    width: 70%;
+   }
+  .modal-body{
+    padding-left: 30px;
+  }
+</style> 
+<div class="modal" id="user_address_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div style="text-align:center">
+          <h4 class="modal-title">
+            收货地址
+          </h4>
+        </div>
+      </div>
+      <div class="modal-body " id="u_address">
+        <%= form_for @address,remote: true do |f|%>
+          <input type="hidden"  name="address[address_type]" value="user" />
+          <div class="form-group">
+            <span>地址</span>
+            <%= f.text_area :address,class: "form-control",rows: "3"%>
+          </div>
+          <div class="form-group">
+            <span>联系人姓名</span>
+            <%= f.text_field :contact_name,class: "form-control"%>
+          </div>
+          <div class="form-group">
+            <span>手机</span>
+            <%= f.text_field :mobile,class: "form-control"%>
+          </div>
+          <div class="form-group">
+            <span>邮编</span>
+            <%= f.text_field :zipcode,class: "form-control"%>
+          </div>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-am-modal-cancel class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button  class="btn btn-primary" onclick="$('#u_address form').submit()" >提交</button>
+      </div>
+    </div>
+  </div>  
+</div> 

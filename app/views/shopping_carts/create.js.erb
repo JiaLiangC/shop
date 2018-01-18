@@ -1,0 +1,4 @@
+console.log("xxxx");
+$("#shopping_cart_wrap").html('');
+$("#shopping_cart_wrap").html("<%= j render 'shared/shopping_cart_modal', product: @product, shopping_cart: @shopping_cart %>");
+$("#shopping_cart_modal").modal('show');

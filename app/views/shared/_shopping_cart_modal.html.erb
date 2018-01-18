@@ -1,0 +1,32 @@
+<style type="text/css">
+  .prduct-img{
+    float: left;
+  }
+  .modal-body{
+    height: 220px;
+  }
+  #shopping_cart_modal .prduct-img{
+    margin-right: 10px;
+  }
+</style>
+<div class="modal fade" id="shopping_cart_modal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body " id="">
+        <h4 class="text text-success"><i class='fa fa-check-circle-o'></i> 加入购物车成功</h4>
+        <div class="prduct-img">
+          <%= image_tag(product.cover_img_url, size: '150x150')%>
+        </div>
+        <div>
+          <p><%= product.title%></p>
+          <p><%= shopping_cart.amount%></p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">继续购物</button>
+        <%= link_to "查看购物车", shopping_carts_path, class: "btn btn-danger"%>
+      </div>
+    </div>
+  </div>  
+</div> 

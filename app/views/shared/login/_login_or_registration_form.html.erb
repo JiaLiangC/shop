@@ -1,0 +1,67 @@
+<div class="login_or_register ">
+  <div class="login-triggle">
+    <%= link_to "登陆",login_path,class: "#{controller_name=='sessions' ? 'active' : ''}"%>
+    &bull;
+    <%= link_to "注册", signup_path,class: "#{controller_name=='sessions' ? '' : 'active'}"%>
+  </div>
+  <div class="login">
+    <%= form_for(@user, url: (controller_name == "users" ? signup_path : login_path), method: :post) do |f| %>
+
+
+      <% if controller_name == "users"%>
+        <div class="form-group">
+          <%= f.text_field :name, autofocus: true,class: "form-control input-lg", placeholder: "请输入昵称" %>
+        </div>
+      <%end%>
+
+      <div class="form-group">
+        <%= f.text_field :account, autofocus: true,class: "form-control  account input-lg",id: "account",autocomplete: "off", placeholder: "请输入邮箱或者手机号" %>
+      </div>
+
+      <div class="form-group">
+
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off",class: "form-control input-lg",placeholder: "请输入密码" %>
+        <%= link_to "忘记密码",new_password_reset_path if controller_name == "sessions" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control input-lg",placeholder: "请再次输入密码" if controller_name == "users" %>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <%= rucaptcha_input_tag(class: 'form-control input-lg', placeholder: "请输入验证码") %>
+          <span class="input-group-addon input-group-captcha">
+            <a class="rucaptcha-image-box" href="#">
+              <%= rucaptcha_image_tag %>
+            </a>
+          </span>
+        </div>
+      </div>
+      <%if controller_name == "users"%>
+
+        <div class="form-group sms  hidden">
+          <%= f.text_field :verify_code, class: "form-control input-lg",placeholder: "短信验证码"%>
+          <%= link_to "点击获取", "javascript:void(0);", class: "send-sms js-send-sms",data: {env: "reg"}%>
+        </div>
+      <%end%>
+
+      <div class="submit">
+        <%= f.submit "#{controller_name == 'users' ? '注册' : '登陆'}",class: "btn btn-success btn-block" %>
+      </div>
+
+
+      <div>
+        <h4>第三方帐号登录</h4>
+        <a href="/auth/wechat"><i class="fa fa-2x fa-weixin"></i></a>
+      </div>
+
+    <% end %>
+  </div>
+      
+</div>
+
+
+
