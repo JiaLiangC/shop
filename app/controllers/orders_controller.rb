@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
             return
         end
 
-        address = current_user.addresses.find(params[:address_id])
+        address = current_user.user_addresses.find(params[:address_id])
         
         # 根据所有购物车创建订单并跳转到支付页面
         orders = Order.create_order_from_shopping_carts!(current_user, address, shopping_carts)

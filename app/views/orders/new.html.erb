@@ -16,11 +16,14 @@
     height: 30px;
   }
 
-  .consignee_list li[defaults~="true"] .op_btns a.js-set-default-consignee{
+  .consignee_list li[defaults~="true"] .op_btns .js-set-default-consignee{
     display: none ;
   }
   .consignee_list li[defaults~="true"] .op_btns .js-delete-consignee{
     display: none ;
+  }
+  .consignee_list li:hover{
+    background-color: #fff3f3;
   }
  
   .consignee{
@@ -33,10 +36,36 @@
     content: "默认地址";
     background-color: #999;
     color: #fff;
-    padding: 2px 3px;
     border-radius: 2px;
   }
+  
+  .consignee_list div{
+    padding: 3px;
+    text-align: center;
+  }
+  .consignee_list .check_addr{
+    position: relative;
+    float: left;
+    width: 20%;
+    display: inline-block;
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin-right: 6px;
+  }
+  .consignee_list .selected{
+    border: 2px solid #FDA13F;
+  }
 
+  .consignee_list .check_addr.selected b{
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 12px;
+      height: 12px;
+      overflow: hidden;
+      background: url('/assets/selected-icon.png') no-repeat;
+  }
   .address_detail{
     float: left;
   }
@@ -160,13 +189,13 @@
 <%=render 'shared/new_consignee_modal'%>
 
 <script>
-  function generateConsigneeList(data){
-    $(".consignee_list").html('');
-    $.each(data.user_addresses, function(idx,itm){
-      var el = '<li defaults= "'+itm.defaults+'"  data-id="" ><div class="consignee"><span>'+itm.contact_name+'</span></div><div class="address_detail"><span class="addr_name">时尚大方</span><span class="addr_info">'+itm.address+'</span><span class="addr_tel">'+itm.mobile+'</span></div><div class="op_btns"><a class="js-set-default-consignee" href="javascript: void(0)" data-id="'+itm.id +'">设为默认地址</a><a href="">编辑</a><a  class="js-delete-consignee"  href="javascript: void(0)" data-id="'+itm.id +'">删除</a></div></li>';
-      $(".consignee_list").append(el);
-    })
-  }
+    function generateConsigneeList(data){
+      $(".consignee_list").html('');
+      $.each(data.user_addresses, function(idx,itm){
+        var el = '<li defaults= "'+itm.defaults+'"  data-id="" ><div class="check_addr"   data-id="'+itm.id +'">'+itm.contact_name+'<b></b></div><div class="consignee"><span>'+itm.contact_name+'</span></div><div class="address_detail"><span class="addr_name">时尚大方</span><span class="addr_info">'+itm.address+'</span><span class="addr_tel">'+itm.mobile+'</span></div><div class="op_btns"><a class="js-set-default-consignee" href="javascript: void(0)" data-id="'+itm.id +'">设为默认地址</a><a href="">编辑</a><a  class="js-delete-consignee"  href="javascript: void(0)" data-id="'+itm.id +'">删除</a></div></li>';
+        $(".consignee_list").append(el);
+      })
+    }
 
 
     function loadUserAddress(consignee_data){
@@ -186,8 +215,32 @@
 
     $(function(){
 
+      // 设置选中的地址的样式
+      $(document).on("click", ".check_addr", function () {
+        $(".check_addr").removeClass("selected");
+        $(this).addClass("selected");
+        $(".create-order-form").find('input[name="address_id"]').val($(this).data("id"));
+      })
+
+
+        //生成订单
+      $('.create-order-form').submit(function() {
+        $form = $(this);
+        var addressID = $form.find('input[name="address_id"]').val
+        // var addressID = $('input[name="address_id"]:checked').data("id"),
+
+        if (!addressID) {
+          alert("请选择收货地址!");
+          return false;
+        } else {
+          $form.find('input[name="address_id"]').val($(".consignee_list .selected").data("id"));
+          return true;
+        }
+      })
+
       loadUserAddress();
 
+      // 收起地址，展开地址
       $(document).on("click", ".addr_switch", function hideConsignee() {
         console.log("a");
         if($(".addr_switch").hasClass("switch-off"))
@@ -197,13 +250,14 @@
           $(".addr_switch span").text(">> 收起地址");
         }
         else{
-          $(".scroll_bar_wrap").height(59);
+          $(".scroll_bar_wrap").height(69);
           $(".addr_switch").removeClass("switch-on").addClass("switch-off");
           $(".addr_switch span").text(">> 更多地址");
 
         }
       });
 
+      // 设置默认地址
       $("body").on("click",".js-set-default-consignee", function(){
         console.log("set default");
         // debugger
@@ -232,10 +286,10 @@
       });
         
                 
-
+      // 删除地址
       $("body").on("click",".js-delete-consignee", function(){
         console.log("xx");
-         // debugger
+        // debugger
         var consigneeId = $(this).data("id")
         var itm = $(this).parent().parent()[0]
         if(consigneeId > 0){
@@ -258,21 +312,6 @@
          itm.remove();
         }
       });
-
-        $(".create-order-form").submit(function(){
-          // debugger
-          var addressId = $("input[name='address_id']:checked").data("address_id");
-          $form=$(this);
-
-          if(!addressId){
-            alert('请选择收货地址！');
-            return false;
-          }else{
-            $form.find('input[name="address_id"]').val(addressId)
-            return true;
-          }
-
-        })
     })
    
   </script>

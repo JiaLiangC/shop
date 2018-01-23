@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
 
 
   def set_browser_uuid
-    uuid = cookies[:user_uuid]
 
+    uuid = cookies[:user_uuid]
     unless uuid
       #如果uuid不存在 ，且用户登陆了就取用户登陆后生成的uuid
       if logged_in?

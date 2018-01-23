@@ -47,6 +47,13 @@ class SessionsController < ApplicationController
             end
           else
             log_in(@user)
+
+            # 此时session中的user_uuid被替换成了user的user_uuid,登录前加入购物车
+            # 的商品讲“消失”，如需要让购物车的商品在登陆后任然存在，那么把session中的user_uuid写入
+            #到user表中，覆盖用户原来的.
+            # 或者只对手机端用户覆盖，因手机端用户较少出现其他人在未登陆时加入购物车的情况。
+            update_browser_uuid @user.uuid
+
             @user.update_attributes(sign_in_count: @user.sign_in_count+1)
             params[:user][:remember_me] == "1" ? remember(@user) : forget(@user) 
             redirect_to root_url
@@ -56,7 +63,9 @@ class SessionsController < ApplicationController
           if @user && !@user.authenticate(user_params[:password])
             @user.errors.add(:password, "密码错误")
           else
-            @user.errors.add(:account,"帐户不存在")
+            # @user.errors.add(:account,"帐户不存在")
+            flash.now[:danger] = "帐户不存在"
+            @user = User.new
           end
 
           if !valid_rucaptcha

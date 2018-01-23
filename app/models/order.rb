@@ -34,12 +34,12 @@ class Order < ApplicationRecord
         def create_order_from_shopping_carts!(user, address, *shopping_carts)
 
             shopping_carts.flatten!
-            address_attrs = address.attributes.except!("id", "created_at", "updated_at")
+            address_attrs = address.attributes.except!("id", "created_at", "updated_at","type")
             orders = []
             transaction do
 
-                # order_address = user.addresses.create!(address_attrs.merge(address_type: Address::AddressType::Order))
-                create_order_contact()
+                order_address = user.order_addresses.create!(address_attrs)
+                # create_order_contact()
                 
                 shopping_carts.each do |shopping_cart|
                     orders << user.orders.create(
