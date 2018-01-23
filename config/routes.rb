@@ -71,7 +71,11 @@ Rails.application.routes.draw do
 
     namespace :api do
 
-        resources :addresses
+        resources :addresses do
+            member do 
+                put 'set_default'
+            end
+        end
         resources :sms, only: [:create] do
             collection do
                 post 'verify'
@@ -79,3 +83,14 @@ Rails.application.routes.draw do
         end
     end
 end
+
+
+
+
+
+
+
+
+
+
+

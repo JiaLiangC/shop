@@ -4,13 +4,10 @@
   .extra_addr{
     float: right;
   }
-  .consignee_list{
-    list-style: none;
-    overflow: hidden;
-    display: block;
-  }
 
   .consignee_list li{
+    list-style: none;
+    overflow: hidden;
     width: 98%;
     float: left;
     list-style: none;
@@ -19,10 +16,27 @@
     height: 30px;
   }
 
+  .consignee_list li[defaults~="true"] .op_btns a.js-set-default-consignee{
+    display: none ;
+  }
+  .consignee_list li[defaults~="true"] .op_btns .js-delete-consignee{
+    display: none ;
+  }
+ 
   .consignee{
     float: left;
   }
   
+  .consignee_list li[defaults~="true"] .address_detail:after{
+    display: inline-block;
+    margin-left: 3px;
+    content: "默认地址";
+    background-color: #999;
+    color: #fff;
+    padding: 2px 3px;
+    border-radius: 2px;
+  }
+
   .address_detail{
     float: left;
   }
@@ -149,11 +163,10 @@
   function generateConsigneeList(data){
     $(".consignee_list").html('');
     $.each(data.user_addresses, function(idx,itm){
-      var el = '<li><div class="consignee"><span>'+itm.contact_name+'</span></div><div class="address_detail"><span class="addr_name">时尚大方</span><span class="addr_info">'+itm.address+'</span><span class="addr_tel">'+itm.mobile+'</span></div><div class="op_btns"><a href="">设为默认地址</a><a href="">编辑</a><a href="">删除</a></div></li>';
+      var el = '<li defaults= "'+itm.defaults+'"  data-id="" ><div class="consignee"><span>'+itm.contact_name+'</span></div><div class="address_detail"><span class="addr_name">时尚大方</span><span class="addr_info">'+itm.address+'</span><span class="addr_tel">'+itm.mobile+'</span></div><div class="op_btns"><a class="js-set-default-consignee" href="javascript: void(0)" data-id="'+itm.id +'">设为默认地址</a><a href="">编辑</a><a  class="js-delete-consignee"  href="javascript: void(0)" data-id="'+itm.id +'">删除</a></div></li>';
       $(".consignee_list").append(el);
     })
   }
-
 
 
     function loadUserAddress(consignee_data){
@@ -170,27 +183,81 @@
       }
      
     }
+
     $(function(){
 
+      loadUserAddress();
+
       $(document).on("click", ".addr_switch", function hideConsignee() {
-          console.log("a");
-          if($(".addr_switch").hasClass("switch-off"))
-          {
-            $(".scroll_bar_wrap").height(150);
-            $(".addr_switch").removeClass("switch-off").addClass("switch-on");
-            $(".addr_switch span").text(">> 收起地址");
-          }
-          else{
-            $(".scroll_bar_wrap").height(59);
-            $(".addr_switch").removeClass("switch-on").addClass("switch-off");
-            $(".addr_switch span").text(">> 更多地址");
+        console.log("a");
+        if($(".addr_switch").hasClass("switch-off"))
+        {
+          $(".scroll_bar_wrap").height(150);
+          $(".addr_switch").removeClass("switch-off").addClass("switch-on");
+          $(".addr_switch span").text(">> 收起地址");
+        }
+        else{
+          $(".scroll_bar_wrap").height(59);
+          $(".addr_switch").removeClass("switch-on").addClass("switch-off");
+          $(".addr_switch span").text(">> 更多地址");
 
-          }
-        });
+        }
+      });
 
+      $("body").on("click",".js-set-default-consignee", function(){
+        console.log("set default");
+        // debugger
+        var consigneeId = $(this).data("id")
+        var itm = $(this).parent().parent();
+        if(consigneeId > 0){
+          $.ajax({
+            url: "/api/addresses/"+consigneeId+"/set_default",
+            method: 'PUT',
+            success: function(){
+              $('.consignee_list li[defaults="true"]').attr("defaults", "false");
+              // debugger
+              itm.attr("defaults", "true")
+              // $('.consignee_list .op_btns a[data-id="'+consigneeId+'"]').parent().parent()[0];
+              // itm.attr("defaults", true);
+              alert("设置成功");
+            },
+            error: function(){
+              alert("设置失败");
+            }
+          });
+        }
+        else{
+          itm.remove();
+        }
+      });
         
-        loadUserAddress();
                 
+
+      $("body").on("click",".js-delete-consignee", function(){
+        console.log("xx");
+         // debugger
+        var consigneeId = $(this).data("id")
+        var itm = $(this).parent().parent()[0]
+        if(consigneeId > 0){
+
+          if(window.confirm("确认要删除？")){ 
+            $.ajax({
+              url: "/api/addresses/"+consigneeId,
+              method: 'DELETE',
+              success: function(){
+                itm.remove();
+                alert("删除成功");
+              },
+              error: function(){
+                alert("删除失败");
+              }
+            });
+          }
+        }
+        else{
+         itm.remove();
+        }
+      });
 
         $(".create-order-form").submit(function(){
           // debugger
