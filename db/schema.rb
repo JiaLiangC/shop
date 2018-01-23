@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118015921) do
+ActiveRecord::Schema.define(version: 20180122034526) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20180118015921) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.boolean  "defaults",     default: false
+    t.integer  "order_id"
+    t.string   "type"
     t.index ["user_id", "address_type"], name: "index_addresses_on_user_id_and_address_type", using: :btree
   end
 
@@ -34,6 +36,17 @@ ActiveRecord::Schema.define(version: 20180118015921) do
     t.string   "ancestry"
     t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
     t.index ["title"], name: "index_categories_on_title", using: :btree
+  end
+
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "level"
+    t.integer  "parent_id"
+    t.bigint   "area_code"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "data_url"
+    t.integer  "count",      default: 0
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -156,10 +169,13 @@ ActiveRecord::Schema.define(version: 20180118015921) do
     t.integer  "sex"
     t.string   "headimgurl"
     t.string   "unionid"
-    t.integer  "score"
+    t.integer  "scores",                  default: 0,     null: false
     t.boolean  "subscribe"
     t.string   "address"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
+    t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
+    t.index ["unionid"], name: "index_users_on_unionid", using: :btree
   end
 
 end

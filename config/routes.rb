@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     end
 
     namespace :api do
+
+        resources :addresses
         resources :sms, only: [:create] do
             collection do
                 post 'verify'

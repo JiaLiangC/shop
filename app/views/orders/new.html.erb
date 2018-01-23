@@ -1,13 +1,105 @@
   
+
+<style type="text/css">
+  .extra_addr{
+    float: right;
+  }
+  .consignee_list{
+    list-style: none;
+    overflow: hidden;
+    display: block;
+  }
+
+  .consignee_list li{
+    width: 98%;
+    float: left;
+    list-style: none;
+    margin: 6px 0;
+    display: block;
+    height: 30px;
+  }
+
+  .consignee{
+    float: left;
+  }
+  
+  .address_detail{
+    float: left;
+  }
+  .address_detail span{
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .op_btns{
+    float: right;
+  }
+
+  .scroll_bar_wrap{
+    margin-top: 10px;
+    position: relative;
+    overflow: scroll;
+    overflow-y:scroll;
+    height: 59px;
+    z-index: 10;
+    widows: 936px;
+  }
+  .consignee_scroll{
+    display: block;
+    overflow: hidden;
+  }
+
+ .consignee_scroll_bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  /*height: 336px;*/
+  width: 100%;
+ }
+
+ .addr_title{
+  border-top: 1px solid gray;
+  height: 40px;
+  line-height: 40px;
+ }
+ .addr_title h4{
+  float: left;
+ }
+
+ .addr_switch{
+  margin-top: 10px;
+  color: gray;
+ }
+ .op_btns a{
+  display: inline-block;
+  margin-left: 5px;
+ }
+</style>
+
 <h1>确认订单</h1>
 <div class="row">
   <div class="container">
-    <div class="page-header">
-      <h4><i class="fa fa-map-marker"></i> 收货地址</h4>
+    <div class=" addr_title">
+      <h4><i class="fa fa-map-marker"></i> 收货人信息</h4>
+      <div class="extra_addr">
+        <%= link_to "新增收货地址","#",data: {toggle: "modal",target: "#new_consignee_modal"}%>
+      </div>
     </div>
-    <div id="address_list">
 
+    <div class="scroll_bar_wrap">
+      <div class="consignee_scroll_bar">
+        <div class="consignee_scroll">
+            <ul class="consignee_list">
+            </ul>
+        </div>
+      </div>
     </div>
+
+    <div class="addr_switch switch-off">
+      <span> >> 更多地址</span>
+    </div>
+ 
 
     <div class="page-header">
       <h4><i class="fa fa-credit-card"></i> 支付方式</h4>
@@ -15,7 +107,7 @@
     <ul class="list-group">
       <li class="list-group-item">
         <input type="radio" name="payment_method" value="alipay" checked />
-        <%= image_tag "alipay.png", width: 100 %>
+        <%= image_tag "alipay.png", width: 50 %>
       </li>
     </ul>
 
@@ -51,14 +143,54 @@
   </div>
 </div>
 
-<%= content_for :javascripts do %>
+<%=render 'shared/new_consignee_modal'%>
 
-<% end %>
 <script>
-    $(function(){
-        $.get('/addresses', function(data) {
-          $('#address_list').html(data);
+  function generateConsigneeList(data){
+    $(".consignee_list").html('');
+    $.each(data.user_addresses, function(idx,itm){
+      var el = '<li><div class="consignee"><span>'+itm.contact_name+'</span></div><div class="address_detail"><span class="addr_name">时尚大方</span><span class="addr_info">'+itm.address+'</span><span class="addr_tel">'+itm.mobile+'</span></div><div class="op_btns"><a href="">设为默认地址</a><a href="">编辑</a><a href="">删除</a></div></li>';
+      $(".consignee_list").append(el);
+    })
+  }
+
+
+
+    function loadUserAddress(consignee_data){
+      if(!consignee_data){
+        $.get('/api/addresses', function(data) {
+        // debugger
+          console.log("loading");
+          generateConsigneeList(data);
         })
+      }
+      else{
+        console.log("loading after create");
+        generateConsigneeList(consignee_data)
+      }
+     
+    }
+    $(function(){
+
+      $(document).on("click", ".addr_switch", function hideConsignee() {
+          console.log("a");
+          if($(".addr_switch").hasClass("switch-off"))
+          {
+            $(".scroll_bar_wrap").height(150);
+            $(".addr_switch").removeClass("switch-off").addClass("switch-on");
+            $(".addr_switch span").text(">> 收起地址");
+          }
+          else{
+            $(".scroll_bar_wrap").height(59);
+            $(".addr_switch").removeClass("switch-on").addClass("switch-off");
+            $(".addr_switch span").text(">> 更多地址");
+
+          }
+        });
+
+        
+        loadUserAddress();
+                
 
         $(".create-order-form").submit(function(){
           // debugger

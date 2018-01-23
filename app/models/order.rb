@@ -10,6 +10,7 @@ class Order < ApplicationRecord
     belongs_to :product
     belongs_to :address
     belongs_to :payment
+    has_one :order_address
 
     before_save :gen_order_no
 
@@ -31,17 +32,17 @@ class Order < ApplicationRecord
 
         #从购物车中创建订单 
         def create_order_from_shopping_carts!(user, address, *shopping_carts)
-            # order_no = RandomCode.generate_order_uuid
 
             shopping_carts.flatten!
             address_attrs = address.attributes.except!("id", "created_at", "updated_at")
             orders = []
             transaction do
-                order_address = user.addresses.create!(address_attrs.merge(address_type: Address::AddressType::Order))
 
+                # order_address = user.addresses.create!(address_attrs.merge(address_type: Address::AddressType::Order))
+                create_order_contact()
+                
                 shopping_carts.each do |shopping_cart|
                     orders << user.orders.create(
-                        # order_no: order_no,
                         product_id: shopping_cart.product.id,
                         address_id: order_address.id,
                         amount: shopping_cart.amount,

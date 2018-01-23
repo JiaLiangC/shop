@@ -25,7 +25,7 @@ class User < ApplicationRecord
   
   has_many :articles
   
-  has_many :addresses
+  has_many :user_addresses
   
   has_many :orders
   

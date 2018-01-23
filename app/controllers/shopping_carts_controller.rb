@@ -19,7 +19,7 @@ class ShoppingCartsController < ApplicationController
     # 根据用户动作创建或者更新购物车item
     def create
         amount = 1
-        # @product = Product.find(params[:product_id])
+        @product = Product.find(params[:product_id])
         # create_or_update!数量在此方法中处理
         @shopping_cart = ShoppingCart.create_or_update!(
             user_uuid: session[:user_uuid],

@@ -32,7 +32,7 @@ module ApplicationHelper
   def titled(collection, opt={})
     raise "link option is required" unless opt[:link]
     opt[:columns] ||= 3
-    opt[:thumbnail] ||= ->(item){image_tag(item.cover_img_url)}
+    opt[:thumbnail] ||= ->(item){image_tag(item.cover_img_url)  if item.cover_img_url.present?}
     opt[:title] ||= ->(item){item.title}
     opt[:description] ||= ->(item){item.description} if opt[:description] != false
     # opt[:price] ||= ->(item){item.price} if opt[:price] != false

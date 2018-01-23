@@ -19,7 +19,7 @@ class Product < ApplicationRecord
     end
 
     def cover_img_url
-        self.cover_image.img_url
+        self.cover_image.try(:img_url)
     end
     
 

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :set_local#, :current_weixin_user #, :set_browser_uuid
+  before_action :set_local, :set_browser_uuid
   # protect_from_forgery with: :exception
   protect_from_forgery
   include SessionsHelper

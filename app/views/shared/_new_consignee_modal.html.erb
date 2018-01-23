@@ -1,0 +1,116 @@
+<style type="text/css">
+  .prduct-img{
+    float: left;
+  }
+  .modal-body{
+    height: 220px;
+  }
+  #shopping_cart_modal .prduct-img{
+    margin-right: 10px;
+  }
+
+  .consignee_form{
+
+  }
+  .consignee_form .item{
+    overflow: hidden;
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    line-height: 25px;
+  }
+  .consignee_form .item input{
+    width: 50%;
+  }
+   .consignee_form span{
+    width: 75px;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    
+   }
+</style>
+<div class="modal fade" id="new_consignee_modal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-body" id="">
+          <div class="consignee_form">
+
+            <%= form_tag api_addresses_path ,id: "new_consignee",remote: true do %>
+
+              <%=hidden_field_tag 'user_address[user_id]',current_user.id%>
+              <div class="item">
+                <span>所在地区</span>
+                <!-- <div>
+                    <#%= select_tag :address_province_id ,options_for_select(@provinces,f.object.address_province_id), prompt: '省', class: 'bt-select js-province-list' %>
+                    <#%= select_tag :address_city_id, options_for_select(@cities,f.object.address_city_id),prompt: '市',class: 'bt-select '%>
+                </div> -->
+              </div>
+
+              <div class="item">
+                <span>收货人</span>
+                <div>
+                  <%=text_field_tag "user_address[contact_name]"%>
+                </div>
+              </div>
+
+              <div class="item">
+                <span>详细地址</span>
+                <div>
+                  <%=text_field_tag "user_address[address]"%>
+                </div>
+              </div>
+
+              <div class="item">
+                <span>手机号码</span>
+                <div>
+                  <%=text_field_tag "user_address[mobile]"%>
+                </div>
+              </div>
+            <%end%>
+          
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button  type="submit" class="btn btn-default js-submit-new-consignee">确认</button>
+          <!--  -->
+          <!-- <#%= link_to "查看购物车", shopping_carts_path, class: "btn btn-danger"%> -->
+        </div>
+      
+    </div>
+  </div>  
+</div> 
+
+<script type="text/javascript">
+  $(function(){
+
+    function  new_consignee(){
+      $("#new_consignee_modal").modal("hide");
+      var form = document.getElementById("new_consignee");
+      var fd = new FormData(form);
+      $.ajax({
+        type: "POST",
+        url: "/api/addresses",
+        data: fd,
+        processData: false,
+        contentType: false,
+        success: function(d){
+          loadUserAddress(d);
+        }
+      });
+    }
+
+    $(document).on("click",".js-submit-new-consignee",function(){
+      new_consignee();
+    })
+
+    
+  })
+ 
+
+  // javascript: setTimeout(loadUserAddress(),30);
+</script>
+
+
+

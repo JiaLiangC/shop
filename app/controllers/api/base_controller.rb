@@ -1,4 +1,8 @@
 class Api::BaseController < ApplicationController
+
+	include SessionsHelper
+  	include ApplicationHelper
+
 	protect_from_forgery with: :null_session
 
 	before_action :destroy_session

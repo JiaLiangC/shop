@@ -2,7 +2,7 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 $(function(){
-    $(document).on('turbolinks:load', function() {
+    // $(document).on('turbolinks:load', function() {
         $('.add-to-cart-btn').on('click', function(){
             console.log('clicked');
 
@@ -29,5 +29,5 @@ $(function(){
             })
             return false;
         });
-    });
+    // });
 });
