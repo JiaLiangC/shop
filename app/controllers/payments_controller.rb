@@ -21,12 +21,12 @@ class PaymentsController < ApplicationController
     end
 
     def generate_pay
-        params.permit(:order_nos)
-        
+        params.permit(:order_no)
+        binding.pry
         #取得用户所有订单 
-        orders = current_user.orders.where(order_no: params[:order_nos].split(","))
+        order = current_user.orders.where(order_no: params[:order_no]).first
         # 根据订单来创建支付信息
-        payment = Payment.create_from_orders!(current_user, orders)
+        payment = Payment.create_from_order!(current_user, order)
         # 跳转到支付页面
         redirect_to payments_path(payment_no: payment.payment_no)
     end

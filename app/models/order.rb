@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
     validates :user_id, presence: true
     validates :address_id, presence: true
-    validates :product_id, presence: true
+    # validates :product_id, presence: true
     validates :total_money, presence: true
     validates :amount, presence: true
     validates :order_no, uniqueness: true
@@ -9,9 +9,10 @@ class Order < ApplicationRecord
     
     belongs_to :user
     
-    belongs_to :product
+    # belongs_to :product
 
     belongs_to :addrdent
+    belongs_to :payment
     has_one :order_address
     has_many :order_details
 
@@ -36,16 +37,15 @@ class Order < ApplicationRecord
     class << self
 
         #从购物车中创建订单 
-        def create_order_from_shopping_carts!create_order_from_shopping_carts!(user, address, *shopping_carts)
-
+        def create_order_from_shopping_carts!(user, address, *shopping_carts)
+            order = nil
             shopping_carts.flatten!
             address_attrs = address.attributes.except!("id", "created_at", "updated_at","type")
             transaction do
-
                 order_address = user.order_addresses.create!(address_attrs)
-                total_money = shopping_carts.inject{|sum,shopping_cart| sum + shopping_cart.amount*shopping_cart.product.price}
+                total_money = shopping_carts.inject(sum = 0){|sum,shopping_cart| sum + shopping_cart.amount*shopping_cart.product.price}
                 order = user.orders.create!(address_id: order_address.id,
-                    amount: shopping_cart.amount,
+                    amount: shopping_carts.count,
                     total_money: total_money)
 
                 shopping_carts.each do |shopping_cart|
@@ -59,7 +59,7 @@ class Order < ApplicationRecord
                 end
                 shopping_carts.map(&:destroy!)
             end
-            user.orders
+            order
         end
     end
    

@@ -200,7 +200,7 @@
         var el = '<li defaults= "'+itm.defaults+'"  data-id="" ><div class="check_addr"   data-id="'+itm.id +'">'+itm.contact_name+'<b></b></div><div class="consignee"><span>'+itm.contact_name+'</span></div><div class="address_detail"><span class="addr_name">时尚大方</span><span class="addr_info">'+itm.address+'</span><span class="addr_tel">'+itm.mobile+'</span></div><div class="op_btns"><a class="js-set-default-consignee" href="javascript: void(0)" data-id="'+itm.id +'">设为默认地址</a><a href="">编辑</a><a  class="js-delete-consignee"  href="javascript: void(0)" data-id="'+itm.id +'">删除</a></div></li>';
         $(".consignee_list").append(el);
       })
-    }
+    };
 
     /**
      * [loadUserAddress description]
@@ -220,7 +220,7 @@
         generateConsigneeList(consignee_data)
       }
      
-    }
+    };
 
     $(function(){
 
@@ -232,13 +232,14 @@
         $(".check_addr").removeClass("selected");
         $(this).addClass("selected");
         $(".create-order-form").find('input[name="address_id"]').val($(this).data("id"));
-      })
+      });
 
 
         //生成订单
       $('.create-order-form').submit(function() {
         $form = $(this);
-        var addressID = $form.find('input[name="address_id"]').val
+
+        var addressID = $form.find('input[name="address_id"]').val();
         // var addressID = $('input[name="address_id"]:checked').data("id"),
 
         if (!addressID) {
@@ -248,7 +249,7 @@
           $form.find('input[name="address_id"]').val($(".consignee_list .selected").data("id"));
           return true;
         }
-      })
+      });
 
       loadUserAddress();
 
