@@ -6,16 +6,21 @@ class Order < ApplicationRecord
     validates :amount, presence: true
     validates :order_no, uniqueness: true
 
+    
     belongs_to :user
+    
     belongs_to :product
-    belongs_to :address
-    belongs_to :payment
+
+    belongs_to :addrdent
     has_one :order_address
+    has_many :order_details
 
     before_save :gen_order_no
 
 
     # 订单状态，初始化和已支付两种，paid在支付成功后更新
+    # 订单状态 (order_status,未付款,已付款,已发货,已签收,退货申请,退货中,已退货,取消交易)
+    # 订单状态 (0:未审核或发起交易;1:交易完成;20:核单通过;24:核单失败;30:已发货;未签收;34:仓库退回;40:座席取消;41:买家取消;42:逾期取消;43:订单无效取消;50:客户签收;54:客户拒签;55:客户退货)
     module OrderStatus
         Initial = 'initial'
         Paid = 'paid'
@@ -31,30 +36,33 @@ class Order < ApplicationRecord
     class << self
 
         #从购物车中创建订单 
-        def create_order_from_shopping_carts!(user, address, *shopping_carts)
+        def create_order_from_shopping_carts!create_order_from_shopping_carts!(user, address, *shopping_carts)
 
             shopping_carts.flatten!
             address_attrs = address.attributes.except!("id", "created_at", "updated_at","type")
-            orders = []
             transaction do
 
                 order_address = user.order_addresses.create!(address_attrs)
-                # create_order_contact()
-                
+                total_money = shopping_carts.inject{|sum,shopping_cart| sum + shopping_cart.amount*shopping_cart.product.price}
+                order = user.orders.create!(address_id: order_address.id,
+                    amount: shopping_cart.amount,
+                    total_money: total_money)
+
                 shopping_carts.each do |shopping_cart|
-                    orders << user.orders.create(
-                        product_id: shopping_cart.product.id,
-                        address_id: order_address.id,
-                        amount: shopping_cart.amount,
-                        total_money: shopping_cart.amount*shopping_cart.product.price)
+                    order.order_details.create!(
+                        product_name: shopping_cart.product.title,
+                        product_price: shopping_cart.product.price,
+                        number: shopping_cart.amount,
+                        product_cover_url: shopping_cart.product.cover_img_url,
+                        subtotal: shopping_cart.amount*shopping_cart.product.price)
 
                 end
                 shopping_carts.map(&:destroy!)
             end
-            orders
+            user.orders
         end
     end
-
+   
 
     private
         

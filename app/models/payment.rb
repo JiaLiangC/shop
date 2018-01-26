@@ -13,7 +13,7 @@ class Payment < ApplicationRecord
 
 
     #根据订单中创建支付记录，并把支付记录和订单关联起来
-    def self.create_from_orders! user,*orders
+    def self.create_from_orders! user, *orders
         orders.flatten!
 
         payment = nil
@@ -22,6 +22,7 @@ class Payment < ApplicationRecord
                 total_money: orders.sum(&:total_money))
             
             orders.each do |order|
+
                 if order.is_paid?
                     raise "order #{order.order_no} has already paid"
                 end

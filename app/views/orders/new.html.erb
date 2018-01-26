@@ -153,7 +153,6 @@
         <%= image_tag "alipay.png", width: 50 %>
       </li>
     </ul>
-
     <div class="page-header">
       <h4><i class="fa fa-list-alt"></i> 商品列表</h4>
     </div>
@@ -189,6 +188,12 @@
 <%=render 'shared/new_consignee_modal'%>
 
 <script>
+
+    /**
+     * [generateConsigneeList description]
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
     function generateConsigneeList(data){
       $(".consignee_list").html('');
       $.each(data.user_addresses, function(idx,itm){
@@ -197,7 +202,11 @@
       })
     }
 
-
+    /**
+     * [loadUserAddress description]
+     * @param  {[type]} consignee_data [description]
+     * @return {[type]}                [description]
+     */
     function loadUserAddress(consignee_data){
       if(!consignee_data){
         $.get('/api/addresses', function(data) {
@@ -215,7 +224,10 @@
 
     $(function(){
 
-      // 设置选中的地址的样式
+
+      /**
+       * [description]
+       */
       $(document).on("click", ".check_addr", function () {
         $(".check_addr").removeClass("selected");
         $(this).addClass("selected");

@@ -24,7 +24,7 @@ class ShoppingCart < ApplicationRecord
 
             record = where(cond).first
             record.update_attributes!(options.merge(amount: record.amount + options[:amount])) if record
-            create!(options) unless record
+            record = create!(options) unless record
             return record
         end
 

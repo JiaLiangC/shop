@@ -1,0 +1,2 @@
+class Logistic < ApplicationRecord
+end

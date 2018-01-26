@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122034526) do
+ActiveRecord::Schema.define(version: 20180124081552) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -64,6 +64,21 @@ ActiveRecord::Schema.define(version: 20180122034526) do
     t.index ["weight", "imgable_id"], name: "index_images_on_weight_and_imgable_id", using: :btree
   end
 
+  create_table "logistics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "order_id"
+    t.integer  "address_id"
+    t.string   "express_no"
+    t.string   "logistics_type"
+    t.decimal  "delivery_amount",       precision: 10
+    t.string   "orderlogistics_status"
+    t.string   "logistics_result_last"
+    t.string   "logistics_result"
+    t.string   "logistics_create_time"
+    t.string   "logistics_update_time"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "member_scores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "type"
     t.integer  "num"
@@ -71,6 +86,22 @@ ActiveRecord::Schema.define(version: 20180122034526) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "order_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "order_id",                                       null: false
+    t.string   "product_name",                                   null: false
+    t.decimal  "product_price",                   precision: 10, null: false
+    t.string   "product_cover_url"
+    t.string   "product_marque"
+    t.string   "product_barcode"
+    t.text     "product_params",    limit: 65535
+    t.decimal  "discount_rate",                   precision: 10
+    t.decimal  "discount_amount",                 precision: 10
+    t.decimal  "subtotal",                        precision: 10
+    t.integer  "number"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -21,10 +21,8 @@ class ShoppingCartsController < ApplicationController
         amount = 1
         @product = Product.find(params[:product_id])
         # create_or_update!数量在此方法中处理
-        @shopping_cart = ShoppingCart.create_or_update!(
-            user_uuid: session[:user_uuid],
-            product_id: params[:product_id],
-            amount: amount)
+        @shopping_cart = ShoppingCart.create_or_update!(user_uuid: session[:user_uuid], product_id: params[:product_id], amount: amount)
+
     end
 
     def update
