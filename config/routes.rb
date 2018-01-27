@@ -55,6 +55,7 @@ Rails.application.routes.draw do
         resources :categories
         resources :products
         resources :product_images
+        resources :coupons
     end
 
     # 验证微信公众号服务器

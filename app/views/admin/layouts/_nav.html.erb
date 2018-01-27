@@ -15,24 +15,26 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li class="<%=active_class("categories")%>">
               <%= link_to "分类",admin_categories_path%>
             </li>
-             <li class="">
+             <li class="<%=active_class("products")%>">
               <%= link_to "商品",admin_products_path%>
              </li>
-            <li class="商品">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商品 <span class="caret"></span></a>
+
+            <!-- <li class="">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">优惠券 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
+                <li><a href="#">新建</a></li>
+                <li><a href="#">Another</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">Separated link</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">One more separated link</a></li>
               </ul>
-            </li>
+            </li> -->
+            <li class="<%=active_class("coupons")%>"><%= link_to "优惠券", admin_coupons_path%></li>
           </ul>
           <form class="navbar-form navbar-left">
             <div class="form-group">
