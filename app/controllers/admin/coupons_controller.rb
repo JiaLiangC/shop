@@ -24,7 +24,6 @@ class Admin::CouponsController < Admin::BaseController
 			category = Category.find(coupon_params[:source_id])
 			@coupon.source = category 
 		end
-		binding.pry
 
 		attributes = @coupon.attributes.except!("id", "created_at", "updated_at")
 		CouponWorker.perform_async(batch_num, attributes, coupon_params[:amount])
@@ -47,7 +46,7 @@ class Admin::CouponsController < Admin::BaseController
 	private
 
 		def  coupon_params
-			params.require(:coupon).permit(:amount, :range_type, :source_id, :limit, :limit_val, :property, :start_date, :end_date,:days)
+			params.require(:coupon).permit(:amount, :name, :range_type, :source_id, :limit, :limit_val, :property, :start_date, :end_date,:days)
 		end
 
 

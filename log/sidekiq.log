@@ -1084,3 +1084,390 @@
 2018-01-29T10:18:01.867Z 30607 TID-ovl7ijtc4 INFO: See LICENSE and the LGPL-3.0 for licensing details.
 2018-01-29T10:18:01.867Z 30607 TID-ovl7ijtc4 INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org
 2018-01-29T10:18:01.874Z 30607 TID-ovl7ijtc4 INFO: Starting processing, hit Ctrl-C to stop
+2018-01-29T10:25:21.782Z 30607 TID-ovl878fm4 CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: start
+2018-01-29T10:25:21.872Z 30607 TID-ovl878fm4 CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: fail: 0.09 sec
+2018-01-29T10:25:21.872Z 30607 TID-ovl878fm4 WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["daqiskuuh",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"substraction","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-30","end_date":"2018-10-01","property":5,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"3"],"retry":true,"queue":"default","jid":"72f8091eb3b7c01064efc6bf","created_at":1517221521.778594,"enqueued_at":1517221521.779101,"error_message":"wrong number of arguments (given 3, expected 0..1)","error_class":"ArgumentError","failed_at":1517221521.872032,"retry_count":0},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"daqiskuuh\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"substraction\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-30\",\"end_date\":\"2018-10-01\",\"property\":5,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"3\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"72f8091eb3b7c01064efc6bf\",\"created_at\":1517221521.778594,\"enqueued_at\":1517221521.779101}"}
+2018-01-29T10:25:21.872Z 30607 TID-ovl878fm4 WARN: ArgumentError: wrong number of arguments (given 3, expected 0..1)
+2018-01-29T10:25:21.872Z 30607 TID-ovl878fm4 WARN: /Users/xiaoliang/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/logger.rb:488:in `info'
+/Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:6:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:26:09.555Z 30607 TID-ovl84sao0 CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: start
+2018-01-29T10:26:09.557Z 30607 TID-ovl84sao0 CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: fail: 0.002 sec
+2018-01-29T10:26:09.557Z 30607 TID-ovl84sao0 WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["daqiskuuh",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"substraction","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-30","end_date":"2018-10-01","property":5,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"3"],"retry":true,"queue":"default","jid":"72f8091eb3b7c01064efc6bf","created_at":1517221521.778594,"enqueued_at":1517221569.554528,"error_message":"wrong number of arguments (given 3, expected 0..1)","error_class":"ArgumentError","failed_at":1517221521.872032,"retry_count":1,"retried_at":1517221569.557056},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"daqiskuuh\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"substraction\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-30\",\"end_date\":\"2018-10-01\",\"property\":5,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"3\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"72f8091eb3b7c01064efc6bf\",\"created_at\":1517221521.778594,\"enqueued_at\":1517221569.554528,\"error_message\":\"wrong number of arguments (given 3, expected 0..1)\",\"error_class\":\"ArgumentError\",\"failed_at\":1517221521.872032,\"retry_count\":0}"}
+2018-01-29T10:26:09.557Z 30607 TID-ovl84sao0 WARN: ArgumentError: wrong number of arguments (given 3, expected 0..1)
+2018-01-29T10:26:09.557Z 30607 TID-ovl84sao0 WARN: /Users/xiaoliang/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/logger.rb:488:in `info'
+/Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:6:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:26:39.620Z 30607 TID-ovl7t8pa0 CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: start
+2018-01-29T10:26:39.621Z 30607 TID-ovl7t8pa0 CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: fail: 0.001 sec
+2018-01-29T10:26:39.622Z 30607 TID-ovl7t8pa0 WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["daqiskuuh",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"substraction","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-30","end_date":"2018-10-01","property":5,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"3"],"retry":true,"queue":"default","jid":"72f8091eb3b7c01064efc6bf","created_at":1517221521.778594,"enqueued_at":1517221599.617863,"error_message":"wrong number of arguments (given 3, expected 0..1)","error_class":"ArgumentError","failed_at":1517221521.872032,"retry_count":2,"retried_at":1517221599.6213179},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"daqiskuuh\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"substraction\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-30\",\"end_date\":\"2018-10-01\",\"property\":5,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"3\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"72f8091eb3b7c01064efc6bf\",\"created_at\":1517221521.778594,\"enqueued_at\":1517221599.617863,\"error_message\":\"wrong number of arguments (given 3, expected 0..1)\",\"error_class\":\"ArgumentError\",\"failed_at\":1517221521.872032,\"retry_count\":1,\"retried_at\":1517221569.557056}"}
+2018-01-29T10:26:39.622Z 30607 TID-ovl7t8pa0 WARN: ArgumentError: wrong number of arguments (given 3, expected 0..1)
+2018-01-29T10:26:39.622Z 30607 TID-ovl7t8pa0 WARN: /Users/xiaoliang/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/logger.rb:488:in `info'
+/Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:6:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:27:17.639Z 30607 TID-ovl83k7pg CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: start
+2018-01-29T10:27:17.641Z 30607 TID-ovl83k7pg CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: fail: 0.001 sec
+2018-01-29T10:27:17.641Z 30607 TID-ovl83k7pg WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["daqiskuuh",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"substraction","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-30","end_date":"2018-10-01","property":5,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"3"],"retry":true,"queue":"default","jid":"72f8091eb3b7c01064efc6bf","created_at":1517221521.778594,"enqueued_at":1517221637.6382349,"error_message":"wrong number of arguments (given 3, expected 0..1)","error_class":"ArgumentError","failed_at":1517221521.872032,"retry_count":3,"retried_at":1517221637.640618},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"daqiskuuh\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"substraction\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-30\",\"end_date\":\"2018-10-01\",\"property\":5,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"3\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"72f8091eb3b7c01064efc6bf\",\"created_at\":1517221521.778594,\"enqueued_at\":1517221637.6382349,\"error_message\":\"wrong number of arguments (given 3, expected 0..1)\",\"error_class\":\"ArgumentError\",\"failed_at\":1517221521.872032,\"retry_count\":2,\"retried_at\":1517221599.6213179}"}
+2018-01-29T10:27:17.641Z 30607 TID-ovl83k7pg WARN: ArgumentError: wrong number of arguments (given 3, expected 0..1)
+2018-01-29T10:27:17.641Z 30607 TID-ovl83k7pg WARN: /Users/xiaoliang/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/logger.rb:488:in `info'
+/Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:6:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:30:11.977Z 30607 TID-ovl878fbk CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: start
+2018-01-29T10:30:12.050Z 30607 TID-ovl878fbk CouponWorker JID-72f8091eb3b7c01064efc6bf INFO: fail: 0.073 sec
+2018-01-29T10:30:12.050Z 30607 TID-ovl878fbk WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["daqiskuuh",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"substraction","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-30","end_date":"2018-10-01","property":5,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"3"],"retry":true,"queue":"default","jid":"72f8091eb3b7c01064efc6bf","created_at":1517221521.778594,"enqueued_at":1517221811.9763799,"error_message":"wrong number of arguments (given 3, expected 0..1)","error_class":"ArgumentError","failed_at":1517221521.872032,"retry_count":4,"retried_at":1517221812.049846},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"daqiskuuh\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"substraction\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-30\",\"end_date\":\"2018-10-01\",\"property\":5,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"3\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"72f8091eb3b7c01064efc6bf\",\"created_at\":1517221521.778594,\"enqueued_at\":1517221811.9763799,\"error_message\":\"wrong number of arguments (given 3, expected 0..1)\",\"error_class\":\"ArgumentError\",\"failed_at\":1517221521.872032,\"retry_count\":3,\"retried_at\":1517221637.640618}"}
+2018-01-29T10:30:12.051Z 30607 TID-ovl878fbk WARN: ArgumentError: wrong number of arguments (given 3, expected 0..1)
+2018-01-29T10:30:12.051Z 30607 TID-ovl878fbk WARN: /Users/xiaoliang/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/logger.rb:488:in `info'
+/Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:5:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:32:55.756Z 30607 TID-ovl86onrg CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: start
+2018-01-29T10:32:55.858Z 30607 TID-ovl86onrg CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: fail: 0.102 sec
+2018-01-29T10:32:55.858Z 30607 TID-ovl86onrg WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["n7hnwc2wj",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"discount","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-31","end_date":"2018-07-01","property":4,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"2"],"retry":true,"queue":"default","jid":"cdf81bdad2b4ae854374ee2c","created_at":1517221975.7557561,"enqueued_at":1517221975.7558138,"error_message":"wrong number of arguments (given 3, expected 0..1)","error_class":"ArgumentError","failed_at":1517221975.857952,"retry_count":0},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"n7hnwc2wj\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"discount\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-31\",\"end_date\":\"2018-07-01\",\"property\":4,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"2\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"cdf81bdad2b4ae854374ee2c\",\"created_at\":1517221975.7557561,\"enqueued_at\":1517221975.7558138}"}
+2018-01-29T10:32:55.858Z 30607 TID-ovl86onrg WARN: ArgumentError: wrong number of arguments (given 3, expected 0..1)
+2018-01-29T10:32:55.858Z 30607 TID-ovl86onrg WARN: /Users/xiaoliang/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/logger.rb:488:in `info'
+/Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:5:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:33:28.579Z 30607 TID-ovl8femw8 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: start
+2018-01-29T10:33:28.580Z 30607 TID-ovl8femw8 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: fail: 0.002 sec
+2018-01-29T10:33:28.581Z 30607 TID-ovl8femw8 WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["n7hnwc2wj",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"discount","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-31","end_date":"2018-07-01","property":4,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"2"],"retry":true,"queue":"default","jid":"cdf81bdad2b4ae854374ee2c","created_at":1517221975.7557561,"enqueued_at":1517222008.578384,"error_message":"wrong number of arguments (given 3, expected 0..1)","error_class":"ArgumentError","failed_at":1517221975.857952,"retry_count":1,"retried_at":1517222008.580545},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"n7hnwc2wj\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"discount\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-31\",\"end_date\":\"2018-07-01\",\"property\":4,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"2\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"cdf81bdad2b4ae854374ee2c\",\"created_at\":1517221975.7557561,\"enqueued_at\":1517222008.578384,\"error_message\":\"wrong number of arguments (given 3, expected 0..1)\",\"error_class\":\"ArgumentError\",\"failed_at\":1517221975.857952,\"retry_count\":0}"}
+2018-01-29T10:33:28.581Z 30607 TID-ovl8femw8 WARN: ArgumentError: wrong number of arguments (given 3, expected 0..1)
+2018-01-29T10:33:28.581Z 30607 TID-ovl8femw8 WARN: /Users/xiaoliang/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/logger.rb:488:in `info'
+/Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:5:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:34:28.718Z 30607 TID-ovl7t68y0 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: start
+2018-01-29T10:34:28.793Z 30607 TID-ovl7t68y0 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: fail: 0.075 sec
+2018-01-29T10:34:28.793Z 30607 TID-ovl7t68y0 WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["n7hnwc2wj",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"discount","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-31","end_date":"2018-07-01","property":4,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"2"],"retry":true,"queue":"default","jid":"cdf81bdad2b4ae854374ee2c","created_at":1517221975.7557561,"enqueued_at":1517222068.715672,"error_message":"undefined method `times' for \"2\":String","error_class":"NoMethodError","failed_at":1517221975.857952,"retry_count":2,"retried_at":1517222068.79284},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"n7hnwc2wj\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"discount\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-31\",\"end_date\":\"2018-07-01\",\"property\":4,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"2\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"cdf81bdad2b4ae854374ee2c\",\"created_at\":1517221975.7557561,\"enqueued_at\":1517222068.715672,\"error_message\":\"wrong number of arguments (given 3, expected 0..1)\",\"error_class\":\"ArgumentError\",\"failed_at\":1517221975.857952,\"retry_count\":1,\"retried_at\":1517222008.580545}"}
+2018-01-29T10:34:28.793Z 30607 TID-ovl7t68y0 WARN: NoMethodError: undefined method `times' for "2":String
+2018-01-29T10:34:28.793Z 30607 TID-ovl7t68y0 WARN: /Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:7:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:35:03.959Z 30607 TID-ovl7ijtc4 INFO: Shutting down
+2018-01-29T10:35:03.959Z 30607 TID-ovl7ijtc4 INFO: Terminating quiet workers
+2018-01-29T10:35:03.959Z 30607 TID-ovl878fwo INFO: Scheduler exiting...
+2018-01-29T10:35:04.060Z 30607 TID-ovl7ijtc4 INFO: Pausing to allow workers to finish...
+2018-01-29T10:35:05.916Z 30607 TID-ovl7ijtc4 INFO: Bye!
+2018-01-29T10:35:10.593Z 31643 TID-ox519csp8 INFO: Booting Sidekiq 5.0.4 with redis options {:url=>"redis:127.0.0.1:6379/2", :namespace=>"plavest", :id=>"Sidekiq-server-PID-31643"}
+2018-01-29T10:35:10.946Z 31643 TID-ox519csp8 INFO: Running in ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin17]
+2018-01-29T10:35:10.946Z 31643 TID-ox519csp8 INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2018-01-29T10:35:10.946Z 31643 TID-ox519csp8 INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org
+2018-01-29T10:35:10.952Z 31643 TID-ox519csp8 INFO: Starting processing, hit Ctrl-C to stop
+2018-01-29T10:35:51.530Z 31643 TID-ox51uv024 CouponWorker JID-2b16dc28e46a3cfa8ad6e49b INFO: start
+2018-01-29T10:35:51.535Z 31643 TID-ox51uv024 CouponWorker JID-2b16dc28e46a3cfa8ad6e49b INFO: fail: 0.005 sec
+2018-01-29T10:35:51.536Z 31643 TID-ox51uv024 WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["eqrdz0arg",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"discount","limit_val":10,"channel":null,"description":null,"status":"initial","start_date":"2018-01-30","end_date":"2018-07-01","property":2,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"2"],"retry":true,"queue":"default","jid":"2b16dc28e46a3cfa8ad6e49b","created_at":1517222151.529554,"enqueued_at":1517222151.5296052,"error_message":"undefined method `times' for \"2\":String","error_class":"NoMethodError","failed_at":1517222151.534873,"retry_count":0},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"eqrdz0arg\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"discount\",\"limit_val\":10,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-30\",\"end_date\":\"2018-07-01\",\"property\":2,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"2\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"2b16dc28e46a3cfa8ad6e49b\",\"created_at\":1517222151.529554,\"enqueued_at\":1517222151.5296052}"}
+2018-01-29T10:35:51.536Z 31643 TID-ox51uv024 WARN: NoMethodError: undefined method `times' for "2":String
+2018-01-29T10:35:51.536Z 31643 TID-ox51uv024 WARN: /Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:7:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:36:15.888Z 31643 TID-ox5218vw4 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: start
+2018-01-29T10:36:15.892Z 31643 TID-ox5218vw4 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: fail: 0.004 sec
+2018-01-29T10:36:15.892Z 31643 TID-ox5218vw4 WARN: {"context":"Job raised exception","job":{"class":"CouponWorker","args":["n7hnwc2wj",{"order_id":null,"uid":null,"batch_num":null,"name":null,"range_type":"single","limit":"discount","limit_val":30,"channel":null,"description":null,"status":"initial","start_date":"2018-01-31","end_date":"2018-07-01","property":4,"user_id":null,"shop_id":null,"source_type":"Product","source_id":2},"2"],"retry":true,"queue":"default","jid":"cdf81bdad2b4ae854374ee2c","created_at":1517221975.7557561,"enqueued_at":1517222175.8859708,"error_message":"undefined method `times' for \"2\":String","error_class":"NoMethodError","failed_at":1517221975.857952,"retry_count":3,"retried_at":1517222175.891477},"jobstr":"{\"class\":\"CouponWorker\",\"args\":[\"n7hnwc2wj\",{\"order_id\":null,\"uid\":null,\"batch_num\":null,\"name\":null,\"range_type\":\"single\",\"limit\":\"discount\",\"limit_val\":30,\"channel\":null,\"description\":null,\"status\":\"initial\",\"start_date\":\"2018-01-31\",\"end_date\":\"2018-07-01\",\"property\":4,\"user_id\":null,\"shop_id\":null,\"source_type\":\"Product\",\"source_id\":2},\"2\"],\"retry\":true,\"queue\":\"default\",\"jid\":\"cdf81bdad2b4ae854374ee2c\",\"created_at\":1517221975.7557561,\"enqueued_at\":1517222175.8859708,\"error_message\":\"undefined method `times' for \\\"2\\\":String\",\"error_class\":\"NoMethodError\",\"failed_at\":1517221975.857952,\"retry_count\":2,\"retried_at\":1517222068.79284}"}
+2018-01-29T10:36:15.892Z 31643 TID-ox5218vw4 WARN: NoMethodError: undefined method `times' for "2":String
+2018-01-29T10:36:15.892Z 31643 TID-ox5218vw4 WARN: /Users/xiaoliang/Personal/Project/rails/shop/app/workers/coupon_worker.rb:7:in `perform'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:199:in `execute_job'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:170:in `block (2 levels) in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:128:in `block in invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/middleware/chain.rb:133:in `invoke'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:169:in `block in process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:141:in `block (6 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:97:in `local'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:140:in `block (5 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:42:in `block in call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:68:in `block in wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/execution_wrapper.rb:85:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/activesupport-5.0.3/lib/active_support/reloader.rb:67:in `wrap'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/rails.rb:41:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:136:in `block (4 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:215:in `stats'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:131:in `block (3 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_logger.rb:7:in `call'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:130:in `block (2 levels) in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/job_retry.rb:72:in `global'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:129:in `block in dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:44:in `with_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/logging.rb:38:in `with_job_hash_context'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:128:in `dispatch'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:168:in `process'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:85:in `process_one'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/processor.rb:73:in `run'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:16:in `watchdog'
+/Users/xiaoliang/.rvm/gems/ruby-2.3.0/gems/sidekiq-5.0.4/lib/sidekiq/util.rb:25:in `block in safe_thread'
+2018-01-29T10:36:30.585Z 31643 TID-ox51uuzw0 CouponWorker JID-2b16dc28e46a3cfa8ad6e49b INFO: start
+2018-01-29T10:36:31.082Z 31643 TID-ox51uuzw0 CouponWorker JID-2b16dc28e46a3cfa8ad6e49b INFO: done: 0.497 sec
+2018-01-29T10:36:40.418Z 31643 TID-ox519csp8 INFO: Shutting down
+2018-01-29T10:36:40.418Z 31643 TID-ox519csp8 INFO: Terminating quiet workers
+2018-01-29T10:36:40.418Z 31643 TID-ox51uvojs INFO: Scheduler exiting...
+2018-01-29T10:36:40.519Z 31643 TID-ox519csp8 INFO: Pausing to allow workers to finish...
+2018-01-29T10:36:41.454Z 31643 TID-ox519csp8 INFO: Bye!
+2018-01-29T10:36:49.633Z 31674 TID-oxkmd1ovw INFO: Booting Sidekiq 5.0.4 with redis options {:url=>"redis:127.0.0.1:6379/2", :namespace=>"plavest", :id=>"Sidekiq-server-PID-31674"}
+2018-01-29T10:36:50.005Z 31674 TID-oxkmd1ovw INFO: Running in ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin17]
+2018-01-29T10:36:50.006Z 31674 TID-oxkmd1ovw INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2018-01-29T10:36:50.006Z 31674 TID-oxkmd1ovw INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org
+2018-01-29T10:36:50.015Z 31674 TID-oxkmd1ovw INFO: Starting processing, hit Ctrl-C to stop
+2018-01-29T10:38:04.579Z 31674 TID-oxkmbboz0 CouponWorker JID-4bf7b415db44bb3ca8954a55 INFO: start
+2018-01-29T10:38:05.134Z 31674 TID-oxkmbboz0 CouponWorker JID-4bf7b415db44bb3ca8954a55 INFO: done: 0.555 sec
+2018-01-29T10:38:50.983Z 31674 TID-oxkmbboz0 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: start
+2018-01-29T10:38:50.991Z 31674 TID-oxkmbboz0 CouponWorker JID-cdf81bdad2b4ae854374ee2c INFO: done: 0.008 sec
+2018-01-29T10:40:31.362Z 31674 TID-oxkmbbp54 CouponWorker JID-76ce7f0e9ecb6594fa299dfa INFO: start
+2018-01-29T10:40:31.547Z 31674 TID-oxkmbbp54 CouponWorker JID-76ce7f0e9ecb6594fa299dfa INFO: done: 0.185 sec
+2018-01-29T10:48:15.679Z 31674 TID-oxkmd1ovw INFO: Shutting down
+2018-01-29T10:48:15.705Z 31674 TID-oxkmd1ovw INFO: Terminating quiet workers
+2018-01-29T10:48:15.706Z 31674 TID-oxkmbbpdg INFO: Scheduler exiting...
+2018-01-29T10:48:15.807Z 31674 TID-oxkmd1ovw INFO: Pausing to allow workers to finish...
+2018-01-29T10:48:17.245Z 31674 TID-oxkmd1ovw INFO: Bye!
+2018-01-29T10:48:22.686Z 31877 TID-own18p3cc INFO: Booting Sidekiq 5.0.4 with redis options {:url=>"redis:127.0.0.1:6379/2", :namespace=>"plavest", :id=>"Sidekiq-server-PID-31877"}
+2018-01-29T10:48:23.101Z 31877 TID-own18p3cc INFO: Running in ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin17]
+2018-01-29T10:48:23.101Z 31877 TID-own18p3cc INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2018-01-29T10:48:23.101Z 31877 TID-own18p3cc INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org
+2018-01-29T10:48:23.112Z 31877 TID-own18p3cc INFO: Starting processing, hit Ctrl-C to stop
+2018-01-29T10:48:35.885Z 31877 TID-own232prc CouponWorker JID-ffdf5bc58e87d092f63e10db INFO: start
+2018-01-29T10:48:36.392Z 31877 TID-own232prc CouponWorker JID-ffdf5bc58e87d092f63e10db INFO: done: 0.507 sec

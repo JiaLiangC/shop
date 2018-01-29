@@ -7,15 +7,11 @@ class Coupon < ApplicationRecord
 	#绑定优惠券类型  单品 品类 所有产品（Product Category）
 	belongs_to :source, polymorphic: true
 	
-	validates :property, presence: true
+	validates :property, presence: true, if: lambda{|c| c.limit == "substraction"}
 
-	validates :start_date, presence: true, :unless => lambda{|c| c.days.present?}
+	validates :start_date, presence: true, unless: lambda{|c| c.days.present?}
   	validates :end_date, presence: true, unless: lambda{|c| c.days.present?}
 
-	# validate :check_verify_code, if: lambda{|u| u.mobile.present?},on: :create
-	# validates :name, presence: true
-	# validate :check_presence_of_account
-	validates_uniqueness_of :name
 
 	before_create :generate_uid
 
