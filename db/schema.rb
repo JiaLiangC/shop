@@ -52,8 +52,9 @@ ActiveRecord::Schema.define(version: 20180127062701) do
   create_table "coupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "order_id"
     t.string   "uid"
+    t.string   "batch_num"
     t.string   "name"
-    t.string   "type"
+    t.string   "range_type"
     t.string   "limit"
     t.decimal  "limit_val",                 precision: 10
     t.string   "channel"
@@ -64,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180127062701) do
     t.decimal  "property",                  precision: 10
     t.integer  "user_id"
     t.integer  "shop_id"
-    t.string   "source_name"
+    t.string   "source_type"
     t.integer  "source_id"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false

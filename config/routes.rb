@@ -49,8 +49,15 @@ Rails.application.routes.draw do
     get 'account_activation/:id',to: 'users#account_activation',as: :user_account_activation
     post 'users/send_verify_code' => 'users#send_verify_code'
 
-
     namespace :admin do
+        require 'sidekiq/web'
+        Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+          # - Use digests to stop length information leaking (see also ActiveSupport::SecurityUtils.variable_size_secure_compare)
+            ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_USERNAME"])) &
+            ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_PASSWORD"]))
+        end if Rails.env.production?
+        mount Sidekiq::Web => '/sidekiq'
+
         root "categories#index"
         resources :categories
         resources :products

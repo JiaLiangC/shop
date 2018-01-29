@@ -25,6 +25,12 @@
         <div class="table-responsive">
 
             <%= form_for [:admin, @coupon] do |f| %>
+
+                <div class="form-group">
+                    <span>名称</span>
+                    <%= f.text_field :name, class: "form-control"%>
+                </div>
+
                 <div class="form-group">
                     <span>发放张数</span>
                     <%= f.number_field :amount, class: "form-control"%>
@@ -32,7 +38,7 @@
 
                 <div class="form-group">
                     <span>适用范围</span>
-                    <%=  f.select :type, Coupon::CouponTypes::RangeTypesHash, class: "form-control "%>
+                    <%=  f.select :range_type, Coupon::CouponTypes::RangeTypesHash, class: "form-control "%>
                     <%= f.hidden_field :source_id %>
                     <input name="search" class="coupon-bind-search" list="data-bind-list"/>
                     <span class="coupon-search-tips">(按回车查询产品)</span>
@@ -99,9 +105,9 @@ $(function(){
     }
 
     // ui
-    $(document).on("change","#coupon_type",function(el){
+    $(document).on("change","#coupon_range_type",function(el){
         console.log("changed");
-        var display_text = $("#coupon_type").find("option:selected").text();
+        var display_text = $("#coupon_range_type").find("option:selected").text();
         $(".coupon-search-tips").text("按回车查询"+ display_text);
     });
 
@@ -120,7 +126,7 @@ $(function(){
             event.preventDefault();
             console.log("key down");
             var key =  $(".coupon-bind-search").val();
-            var type = $("#coupon_type").val();
+            var type = $("#coupon_range_type").val();
             var url = "<%= api_products_path%>.json?key=" + key+"&type=" + type;
             $.get(url,function(res){
                 dispalySuggest(res.data,'data-bind-list');

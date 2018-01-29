@@ -7,6 +7,9 @@ class Product < ApplicationRecord
 
     has_many :images, as: :imgable
 
+    # 单品优惠券
+    has_many :coupons, as: :source
+
     has_one :cover_image, -> { order("weight desc") }, class_name: :Image, as: :imgable
     
     scope :onshelf, ->{ where(status: Status::On) }

@@ -7,7 +7,7 @@ class Admin::BaseController < ActionController::Base
   
     private
     	def check_admin
-    		redirect_ro root_path	unless current_user && current_user.admin?
+    		redirect_ro login_path	unless current_user && current_user.admin?
     	end
 
 end

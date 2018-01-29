@@ -1,9 +1,8 @@
 class Admin::CouponsController < Admin::BaseController
 
 
-
 	def index
-
+		@coupons = Coupon.all();
 	end
 
 	def new
@@ -11,19 +10,25 @@ class Admin::CouponsController < Admin::BaseController
 	end
 
 	def create
-		binding.pry
-		# all single category
-		if coupon_params[:type] == "single" 
-		end
-
-		#时间类型 
-		if coupon_params[:time_limit] == "absolute"
-		end
+		batch_num = Coupon.generate_batch_num
 
 		@coupon = Coupon.new(coupon_params)
+		@coupon.status = Coupon::CouponTypes::StatusInitial
+		  
+		# all single category
+		case coupon_params[:range_type]
+		when Coupon::CouponTypes::RangeTypeSingle 
+			product = Product.find(coupon_params[:source_id])
+			@coupon.source = product 
+		when Coupon::CouponTypes::RangeTypeAll
+			category = Category.find(coupon_params[:source_id])
+			@coupon.source = category 
+		end
+		binding.pry
 
-
-
+		attributes = @coupon.attributes.except!("id", "created_at", "updated_at")
+		CouponWorker.perform_async(batch_num, attributes, coupon_params[:amount])
+		redirect_to admin_coupons_path
 	end
 
 	def edit
@@ -42,7 +47,7 @@ class Admin::CouponsController < Admin::BaseController
 	private
 
 		def  coupon_params
-			params.require(:coupon).permit(:amount, :type, :source_id, :limit, :limit_val, :property, :start_date, :end_date,:days)
+			params.require(:coupon).permit(:amount, :range_type, :source_id, :limit, :limit_val, :property, :start_date, :end_date,:days)
 		end
 
 

@@ -4,6 +4,10 @@ class Category < ApplicationRecord
     has_ancestry orphan_strategy: :destroy
     has_many :products, dependent: :destroy
 
+    # 品类优惠券
+    has_many :coupons, as: :source
+
+
     before_validation :correct_ancestry
 
     
