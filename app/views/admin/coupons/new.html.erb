@@ -1,36 +1,133 @@
+
+<style type="text/css">
+    .coupon-absolute-time{
+        display: none;
+    }
+    .coupon-relative-time{
+        display: none;
+    }
+
+    input.time-limit-absolute:checked  ~ .coupon-absolute-time{
+        display: block;
+    }
+
+    input.time-limit-relative:checked  ~ .coupon-relative-time{
+        display: block;
+    }
+</style>
+
 <div class="container-fluid">
   <div class="row">
     <%= render "admin/shared/sidebar"%>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-3 main">
     <h2 class="sub-header">卡券管理</h2>
 
         <div class="table-responsive">
 
-            <%= form_for :coupon do |f| %>
-                <div>
+            <%= form_for [:admin, @coupon] do |f| %>
+                <div class="form-group">
                     <span>发放张数</span>
-                    <%= f.text_field :amount %>
+                    <%= f.number_field :amount, class: "form-control"%>
                 </div>
 
-                <div>
+                <div class="form-group">
                     <span>适用范围</span>
-                    <%=  f.text_field :type%>
+                    <%=  f.select :type, Coupon::CouponTypes::RangeTypesHash, class: "form-control "%>
+                    <%= f.hidden_field :source_id %>
+                    <input name="search" class="coupon-bind-search" list="data-bind-list"/>
+                    <span class="coupon-search-tips">(按回车查询产品)</span>
+                    <datalist id="data-bind-list" class="scrollable">
+                    </datalist>
                 </div>
 
-                <div>
+                <div class="form-group">
                     <span>使用条件</span>
-                    <%=  f.text_field :limit%>
+                    <%=  f.select :limit, Coupon::CouponTypes::UseLimitHash, class: "form-control"%>
+                    <%=  f.number_field :limit_val, min: "0", step: "0.1", class: "form-control", placeholder: "(折扣率或者满减的门槛值)"%>
                 </div>
 
-                <div>
-                    <span>开始时间</span>
-                    <%=  f.date_field :start_date%>
+                <div class="form-group">
+                    <%= f.radio_button :time_limit, "absolute",class: "time-limit-absolute" %> 限定绝对生效时间
+                    <%= f.radio_button :time_limit, "relative",class: "time-limit-relative" %> 相对生效时间(领取后X天过期)
 
-                    <span>结束时间</span>
-                    <%= f.date_field :end_date%>
+                    <div class="coupon-absolute-time">
+                        <br>
+                        <span class="inline-block">开始时间 <%=  f.datetime_local_field :start_date,min: Date.today%></span>
+                        
+                        <span class="inline-block">结束时间 <%= f.datetime_local_field :end_date,min: Date.today%></span>
+                         
+                    </div>
+
+                    <div class="coupon-relative-time">
+                        <%= f.number_field "days" ,placeholder: "输入生效的天数"%>
+                    </div>
                 </div>
-            <%= end %>
+
+                <div class="form-group">
+                    <span>优惠券面额</span>
+                    <%=  f.number_field :property,min: "0",step: "0.1",class: "form-control"%>
+                </div>
+
+                <div class="form-group">
+                    <%= f.submit "确定",class: "btn btn-default"%>
+                </div>
+            <% end %>
         </div>
     </div>
   </div>  
 </div>
+
+
+<script type="text/javascript">
+$(function(){
+
+
+    // 往datalist中装入数据
+    function dispalySuggest(data, list_id){
+        var model_list = $('#'+list_id);    
+        model_list.html('');
+        var option;
+        var tmpFrag = document.createDocumentFragment();
+        for(var i=0;i< data.length;i++){
+          option = document.createElement("option");
+          option.innerHTML = '<span>' + "id:" +data[i].id +",&nbsp;&nbsp;"+ "名称:" + data[i].name +'</span>';
+          option.dataset.id = data[i].id;
+          tmpFrag.appendChild(option);
+        }
+        model_list.append(tmpFrag);
+        model_list.show();
+    }
+
+    // ui
+    $(document).on("change","#coupon_type",function(el){
+        console.log("changed");
+        var display_text = $("#coupon_type").find("option:selected").text();
+        $(".coupon-search-tips").text("按回车查询"+ display_text);
+    });
+
+
+    // 赋值适用范围的source_id
+    $(document).on("change",".coupon-bind-search",function(el){
+        console.log("changed");
+        var source_id = $(".coupon-bind-search").val().match(/[^(id\:)]+(?=,)/ig)
+        $("input[name='coupon[source_id]']").val(source_id);
+    });
+
+
+    //查询产品，分类的数据
+    $(document).on("keydown",".coupon-bind-search",function(){
+        if(event.keyCode ==13){
+            event.preventDefault();
+            console.log("key down");
+            var key =  $(".coupon-bind-search").val();
+            var type = $("#coupon_type").val();
+            var url = "<%= api_products_path%>.json?key=" + key+"&type=" + type;
+            $.get(url,function(res){
+                dispalySuggest(res.data,'data-bind-list');
+            })
+        }
+    });
+
+})
+
+</script>

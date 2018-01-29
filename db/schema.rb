@@ -55,20 +55,19 @@ ActiveRecord::Schema.define(version: 20180127062701) do
     t.string   "name"
     t.string   "type"
     t.string   "limit"
+    t.decimal  "limit_val",                 precision: 10
     t.string   "channel"
-    t.text     "description",  limit: 65535
+    t.text     "description", limit: 65535
     t.string   "status"
     t.date     "start_date"
     t.date     "end_date"
-    t.decimal  "property",                   precision: 10
+    t.decimal  "property",                  precision: 10
     t.integer  "user_id"
     t.integer  "shop_id"
-    t.integer  "category_id"
     t.string   "source_name"
     t.integer  "source_id"
-    t.decimal  "minimum_cost",               precision: 10
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

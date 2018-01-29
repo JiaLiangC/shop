@@ -82,6 +82,8 @@ Rails.application.routes.draw do
                 post 'verify'
             end
         end
+
+        resources :products
     end
 end
 
