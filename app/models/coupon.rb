@@ -42,10 +42,7 @@ class Coupon < ApplicationRecord
 		#未领取 
 		StatusInitial = "initial"
 
-
-
 	end
-
 
 	# 领取优惠券
 	def draw(user_id)
@@ -72,10 +69,30 @@ class Coupon < ApplicationRecord
 		self.uid = RandomCode.generate_utoken
 	end
 
+
+
+
 	class << self
+		# 生成批号
 		def generate_batch_num
 			RandomCode.generate_utoken
 		end
+
+		# 批次券数量 
+		def batch_amount(batch_num)
+			Coupon.where(batch_num: batch_num).count
+		end
+
+		# 已领取
+		def obtained_amount(batch_num)
+			Coupon.where("batch_num = ? and status <> ?",batch_num,CouponTypes::StatusInitial).count
+		end
+
+		# 已使用
+		def used_amount(batch_num)
+			Coupon.where("batch_num = ? and status = ?",batch_num,CouponTypes::StatusUsed).count
+		end
+		
 	end
 
 

@@ -2,7 +2,7 @@ class Admin::CouponsController < Admin::BaseController
 
 
 	def index
-		@coupons = Coupon.all();
+		@coupons = Coupon.all.paginate(page: params[:pgae],per_page: params[:per_page]);
 	end
 
 	def new

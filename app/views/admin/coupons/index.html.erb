@@ -4,35 +4,57 @@
      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <h2 class="sub-header">卡券管理</h2>
 
+      <div>
+        <%= link_to "新建卡券",new_admin_coupon_path, class: "btn btn-success" %>
+      </div>
+
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
+              <th>券批号</th>
+              <th>批数量</th>
+              <th>已领取</th>
               <th>id</th>
               <th>名称</th>
-              <th>别名</th>
-              <th>城市</th>
+              <th>券类型</th>
+              <th>券对象id</th>
+              <th>券对象名称</th>
+              <th>适用范围</th>
+              <th>折扣率/满减值</th>
+              <th>券面额</th>
+              <th>开始时间</th>
+              <th>结束时间</th>
               <th>创建时间</th>
               <th>编辑</th>
             </tr>
           </thead>
 
           <tbody>
-           <!--  <#%@dealers.each do |dealer|%>
+            <%@coupons.each do |coupon|%>
               <tr>
-                <td><#%= dealer.id%></td>
-                <td><#%= dealer.name%></td>
-                <td class="<#%= dealer.nick_name ? '' : 'alert-none'%>">
-                  <#%= dealer.nick_name || '暂无'%>
+                <td><%= coupon.batch_num %></td>
+                <td><%= Coupon.batch_amount(coupon.batch_num) %></td>
+                <td><%= Coupon.obtained_amount(coupon.batch_num) %></td>
+                <td><%= coupon.id%></td>
+                <td class="<#%= coupon.name ? '' : 'alert-none'%>">
+                  <%= coupon.name || '暂无'%>
                 </td>
-                <td><#%= dealer.address_city.try(:name)%></td>
-                <td><#%= dealer.created_at.localtime.strftime("%Y-%m-%d %H:%M")%></td>
-                <td><#%= link_to "编辑",edit_dealer_path(id: dealer.id,page: params[:page])%></td>
+                <td><%= coupon.range_type %></td>
+                <td><%= coupon.source_id %></td>
+                <td><%=  coupon.source_type %></td>
+                <td><%= coupon.limit%></td>
+                <td><%= coupon.limit_val %></td>
+                <td><%= coupon.property %></td>
+                <td><%= coupon.start_date %></td>
+                <td><%=  coupon.end_date %></td>
+                <td><%= coupon.created_at.localtime.strftime("%Y-%m-%d")%></td>
+                <td><%= link_to "编辑",edit_admin_coupon_path(id: coupon.id, page: params[:page])%></td>
               </tr>
-            <#%end if @dealers.present?%> -->
+            <%end if @coupons.present?%>
           </tbody>
         </table>
-        <!-- <#%=will_paginate @dealers%> -->
+         <%=will_paginate @coupons%> 
       </div>
     </div>
   </div>  
